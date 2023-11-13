@@ -1,4 +1,5 @@
 import os
+from distutils.dir_util import copy_tree
 
 # Preparing dist directory 
 
@@ -14,4 +15,8 @@ if os.path.exists('dist'):
 else:
     os.mkdir('dist')
 
+# Copying static files
+    
+## Copying all files and subdirectories from the static directory to the dist directory
 
+copy_tree('static', 'dist')

@@ -20,7 +20,7 @@ def setupPandoc() -> None:
             print("Creating pandoc directory...")
             os.mkdir("pandoc")
             os.chdir("pandoc")
-            filename
+            filename = ""
             if (platform.machine() == "i386"):
                 print("Downloading pandoc binary for i386 Linux.")
                 os.system("curl " + PANDOC_BINARY)

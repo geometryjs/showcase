@@ -12,7 +12,7 @@ def setupPandoc() -> None:
             print("Unable to automatically install pandoc on macOS. Please install pandoc manually.")
             exit(1)
         if (sys.platform == "linux") or (sys.platform == "linux2"):
-            os.system("sudo apt-get install pandoc")
+            os.system("apt-get install pandoc")
             print("Pandoc linux installation complete.")
         print("Pandoc installation complete.")
         pandocPath = shutil.which("pandoc")

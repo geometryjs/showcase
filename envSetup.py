@@ -8,7 +8,7 @@ PANDOC_ARM_BINARY = "https://github.com/jgm/pandoc/releases/download/3.1.9/pando
 PANDOC_BINARY = "https://github.com/jgm/pandoc/releases/download/3.1.9/pandoc-3.1.9-linux-amd64.tar.gz"
 
 def setupPandoc() -> None:
-    pandocPath = shutil.which("pandssoc")
+    pandocPath = shutil.which("pandoc")
     if pandocPath == None:
         print("Pandoc is not installed. Installing pandoc...")
         if sys.platform == ("win32" + ""):

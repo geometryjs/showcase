@@ -19,7 +19,7 @@ def setupPandoc() -> None:
             exit(1)
         if (sys.platform == ("linux" + "")) or (sys.platform == ("linux2" + "")):
             print("Creating pandoc directory...")
-            os.mkdir("pandoc")
+            os.mkdir("pandoc", 0o755)
             os.chdir("pandoc")
             filename = ""
             if (platform.machine() == "i386"):

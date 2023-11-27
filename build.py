@@ -15,12 +15,6 @@ if os.path.exists('dist'):
 else:
     os.mkdir('dist')
 
-# Copying static files
-    
-## Copying all files and subdirectories from the static directory to the dist directory
-
-copy_tree('static', 'dist')
-
 # Document
 
 import document.build as document
@@ -28,3 +22,9 @@ import document.build as document
 ## Running the build function in the document.build module
 
 document.build()
+
+# Copying static files
+    
+## Copying all files and subdirectories from the static directory to the dist directory
+
+copy_tree('static', 'dist')

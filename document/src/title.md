@@ -57,16 +57,7 @@ V Praze dne \prohlaseniDatum \hfill \autorJmeno
 
 \tableofcontents
 \linespread{1.5}
+\newpage
 ```
 
-\newpage
-# Úvod
 
-\newpage
-# Závěr
-
-\newpage
-# Seznam Literatury {-}
-
-\newpage
-# Přílohy {-}

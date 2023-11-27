@@ -2,6 +2,7 @@ import shutil
 import sys
 import os
 import platform
+from urllib.request import urlretrieve
 
 PANDOC_ARM_BINARY = "https://github.com/jgm/pandoc/releases/download/3.1.9/pandoc-3.1.9-linux-arm64.tar.gz"
 PANDOC_BINARY = "https://github.com/jgm/pandoc/releases/download/3.1.9/pandoc-3.1.9-linux-amd64.tar.gz"
@@ -23,12 +24,16 @@ def setupPandoc() -> None:
             filename = ""
             if (platform.machine() == "i386"):
                 print("Downloading pandoc binary for i386 Linux.")
-                os.system("curl " + PANDOC_BINARY)
-                filename = PANDOC_BINARY.split("/")[-1]
+                binary = PANDOC_BINARY
             else:
                 print("Downloading pandoc binary for ARM Linux.")
-                os.system("curl " + PANDOC_ARM_BINARY)
-                filename = PANDOC_ARM_BINARY.split("/")[-1]
+                binary = PANDOC_ARM_BINARY
+            filename = binary.split("/")[-1]
+            download_file_http(binary, filename)
+
+            for filename in os.listdir("."):
+                print(f"Pandoc/{filename}")
+            
             print(f"Extracting {filename}...")
             os.system(f"tar xvzf {filename} --strip-components 1 -C /usr/local")
         print("Pandoc installation complete.")
@@ -39,3 +44,8 @@ def setupPandoc() -> None:
     
 def WIN_PLATFROM():
     return "win32"
+
+
+def download_file_http(url, filename):
+    urlretrieve(url, filename)
+    print(f"Downloaded {filename} from {url}.")

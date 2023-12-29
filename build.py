@@ -1,6 +1,10 @@
 import os
 from distutils.dir_util import copy_tree
+# Preparing shell
 
+os.system('cls' if os.name == 'nt' else 'clear')
+os.system('title Building...')
+print('Building...')
 # Preparing dist directory 
 
 ## If the directory already exists, remove all files and subdirectories in it recursively

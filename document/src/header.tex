@@ -1,13 +1,23 @@
-% Page break after each section
-\let\oldsection\section
-\renewcommand\section{\clearpage\oldsection}
+\documentclass[12pt,a4paper]{report} % Report class in 12 points
+\usepackage[total={16.5cm,25.2cm}, top=2.5cm, left=2.5cm]{geometry} % Margins
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 
-% Variables
-\renewcommand{\date}{05. 01. 2024}
-\newcommand{\name}{Jiří Cihelka}
-\newcommand{\project}{Knihovna pro geomterii v rovině}
-\newcommand{\seminar}{Programování (PRG)}
-\newcommand{\school}{Gymnázium Christiana Dopplera\\ Zborovská 45, Praha 5}
 
-% Set name of table of contents
-\renewcommand*\contentsname{Obsah}
+%%% Údaje o práci
+% Název práce v jazyce práce (přesně podle zadání)
+\def\NazevPrace{Název práce}
+% Jméno autora
+\def\AutorPrace{Jméno Příjmení}
+% Třída autora
+\def\TridaAutora{Třída}
+% Školní rok
+\def\SkolniRok{ROK/ROK}
+% Seminář ve kterém práce vznikla
+\def\Seminar{Seminář}
+% Datum dokončení práce
+\def\DatumDokonceni{Datum}
+
+\setlength\parindent{0.5cm} % šířka odsazení prvního řádku odstavce
+\linespread{1.25} % řádkování 1.5 dle MS Word

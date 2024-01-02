@@ -10,3 +10,5 @@ document/src/**/*.toc
 document/src/**/*.gz
 document/src/**/*.fdb_latexmk
 document/src/**/*.fls
+
+**/*(busy)*

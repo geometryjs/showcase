@@ -1,3 +1,12 @@
 __pycache__
 *.pyc
 dist
+
+document/src/**/*.aux
+document/src/**/*.log
+document/src/**/*.out
+document/src/**/*.pdf
+document/src/**/*.toc
+document/src/**/*.gz
+document/src/**/*.fdb_latexmk
+document/src/**/*.fls

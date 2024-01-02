@@ -1,0 +1,75 @@
+\chapter{Nástroje a jazyk}
+\section{Programovací jazyk}
+
+Pro tvorbu knihovny jsem si vybral jazyk TypeScript. 
+Jedná se o nadstavbu jazyka JavaScript, která přidává statické typování a další vylepšení. 
+Jazyk je svou strukturou velmi podobný jazyku C\#.
+TypeScript je kompilován do JavaScriptu, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči.
+
+\section{Nástroje}
+
+Při tvorbě kvalitní a stabilní knihovny je v podstatě nezbytné využít standardní nástroje pro vývoj softwaru. 
+V této kapitole se budu zabývat nástroji, které jsem použil při tvorbě knihovny.
+
+\subsection{Verzovací systém}
+
+Verzovací systém je nástroj, který slouží k evidenci změn v kódu. 
+Umožňuje nám také vytvářet větve, které můžeme následně sloučit do hlavní větve. 
+Větve nám umožňují pracovat na více funkcionalitách zároveň, aniž bychom museli mít všechny hotové. 
+Také nám umožňuje v případě potřeby se vrátit k předchozí verzi kódu.
+ Pokud nalezneme chybu, můžeme v historii najít, jak chyba vznikla podniknout kroky k eliminaci podobných chyb v budoucnu.
+
+Pro tuto práci jsem zvolil verzovací systém Git. Jedná se o nejpoužívanější verzovací systém, který je zdarma a open-source.
+Zároveň má podporu prakticky ve všech standardních vývojových nástrojích a existuje mnoho serverů, které vám umožní zdarma hostovat váš repozitář.
+Jako hostovací server jsem vybral GitHub, jelikož se jedná o nejčastěji používaný server pro open-source projekty.
+
+\subsection{Správce balíčků}
+
+Správce balíčků je nástroj, který slouží k instalaci a aktualizaci knihoven a dalších závislostí. 
+U moderních jazyků je běžné, že většina knihoven je dostupná přes správce balíčků, který je součástí standardní instalace jazyka.
+
+V případě TypeScriptu (ve finále spíše JavaScriptu) je toto poněkud složitější, jelikož nemá standardní instalaci a běžně se spouští přímo v prohlížeči.
+Existují však i neprohlížečová prostředí, která umožňují spouštět JavaScriptový kód přímo v příkazové řádce. 
+Jedním takovým prostředím je Node.js, které je založeno na jádře V8, které používá i prohlížeč Google Chrome.
+Součástí Node.js je také správce balíčků npm, který je nejčastěji používaným správcem balíčků pro JavaScript a TypeScript. 
+Existuje k němu i pro veřejné balíčky bezplatný repozitář, který je dostupný na adrese \url{https://www.npmjs.com/}.
+Tento repozitář je používán i jinými správci balíčků, například pnpm.
+
+\subsection{Kompilátor}
+
+Důležitým stavebním krokem knihovny je kompilace. 
+Kompilujeme zdrojový kód v TypeScriptu do JavaScriptu, který je spustitelný v prohlížeči i v Node.js. 
+TypeScript je, obdobně jako C\#, jazyk vytvořený Microsoftem.
+Microsoft k jazyku tak poskytuje i kompilátor.
+
+Existují i jiné kompilátory, které jsou v některých ohledech lepší, ale vzhledem k tomu, že je kompilátor od Microsoftu nejrozšířenější, rozhodl jsem se ho použít.
+
+\subsection{Testování}
+
+Automatické testování je důležité pro zajištění kvality kódu v každém projektu. 
+U knihovnen je důkladné testování celého kódu ještě důležitější, jelikož se jedná o kód, na který se spoléhají jiné projekty.
+
+Pro testování jsem zvolil framework Jest.
+Důvodem byly především moje předchozí zkušenosti s tímto frameworkem.
+Protože má všechny potřebné funkce a je velmi jednoduchý na použití, neviděl jsem důvod proč zvolit jiný framework.
+
+\subsection{Dokumentace}
+
+Dokumentace je důležitá pro každý projekt.
+Dokumentace knihovny se dělí na dvě části.
+
+\subsubsection{Vývojářská dokumentace}
+
+Vývojářská dokumentace je určena pro hlubší pochopení kódu knihovny.
+Hodí se například pokud budeme chtít knihovnu rozšířit o nové funkce či hledat zdroje chyb.
+GitHub má zabudovanou podporu pro vývojářskou dokumentaci, která je psaná ve formátu Markdown.
+Markdown je jednoduchý formát, který umožňuje psát text s krátkými formátovacími značkami.
+Vývojářská dokumentace je dostupná na adrese \url{https://github.com/geometryjs/geometry.js/wiki/} a je manuálně aktualizována. 
+Jedná se také o hlavní zdroj této práce.
+
+\subsubsection{Uživatelská dokumentace}
+
+Uživatelská dokumentace (nebo také API dokumentace) je určena pro uživatele knihovny, tedy pro programátory, kteří knihovnu používají.
+Ta vychází přímo z kódu knihovny a komentářů v něm.
+Je automaticky generována systémem TypeDoc a je dostupná na adrese \url{https://geometryjs.jiricekcz.dev/api/}.
+Obashuje soupis všech tříd, funkcí a proměnných, které jsou dostupné pro uživatele knihovny a jejich popis.

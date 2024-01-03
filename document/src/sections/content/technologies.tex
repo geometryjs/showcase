@@ -1,7 +1,7 @@
 \chapter{Nástroje a jazyk}
 \section{Programovací jazyk}
 
-Pro tvorbu knihovny jsem si vybral jazyk TypeScript. 
+Pro tvorbu knihovny jsme si vybrali jazyk TypeScript. 
 Jedná se o nadstavbu jazyka JavaScript, která přidává statické typování a další vylepšení. 
 Jazyk je svou strukturou velmi podobný jazyku C\#.
 TypeScript je kompilován do JavaScriptu, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči.
@@ -9,7 +9,7 @@ TypeScript je kompilován do JavaScriptu, který je následně spouštěn v proh
 \section{Nástroje}
 
 Při tvorbě kvalitní a stabilní knihovny je v podstatě nezbytné využít standardní nástroje pro vývoj softwaru. 
-V této kapitole se budu zabývat nástroji, které jsem použil při tvorbě knihovny.
+V této kapitole se budu zabývat nástroji, které jsme použili při tvorbě knihovny.
 
 \subsection{Verzovací systém}
 
@@ -19,9 +19,9 @@ Větve nám umožňují pracovat na více funkcionalitách zároveň, aniž bych
 Také nám umožňuje v případě potřeby se vrátit k předchozí verzi kódu.
  Pokud nalezneme chybu, můžeme v historii najít, jak chyba vznikla podniknout kroky k eliminaci podobných chyb v budoucnu.
 
-Pro tuto práci jsem zvolil verzovací systém Git. Jedná se o nejpoužívanější verzovací systém, který je zdarma a open-source.
+Pro tuto práci jsme zvolili verzovací systém Git. Jedná se o nejpoužívanější verzovací systém, který je zdarma a open-source.
 Zároveň má podporu prakticky ve všech standardních vývojových nástrojích a existuje mnoho serverů, které vám umožní zdarma hostovat váš repozitář.
-Jako hostovací server jsem vybral GitHub, jelikož se jedná o nejčastěji používaný server pro open-source projekty.
+Jako hostovací server jsme vybrali GitHub, jelikož se jedná o nejčastěji používaný server pro open-source projekty.
 
 \subsection{Správce balíčků}
 
@@ -37,21 +37,21 @@ Tento repozitář je používán i jinými správci balíčků, například pnpm
 
 \subsection{Kompilátor}
 
-Důležitým stavebním krokem knihovny je kompilace. 
+Důležitým \uv{build stepem} knihovny je kompilace. 
 Kompilujeme zdrojový kód v TypeScriptu do JavaScriptu, který je spustitelný v prohlížeči i v Node.js. 
 TypeScript je, obdobně jako C\#, jazyk vytvořený Microsoftem.
 Microsoft k jazyku tak poskytuje i kompilátor.
 
-Existují i jiné kompilátory, které jsou v některých ohledech lepší, ale vzhledem k tomu, že je kompilátor od Microsoftu nejrozšířenější, rozhodl jsem se ho použít.
+Existují i jiné kompilátory, které jsou v některých ohledech lepší, ale vzhledem k tomu, že je kompilátor od Microsoftu nejrozšířenější, rozhodli jsme se ho použít.
 
 \subsection{Testování}
 
 Automatické testování je důležité pro zajištění kvality kódu v každém projektu. 
 U knihovnen je důkladné testování celého kódu ještě důležitější, jelikož se jedná o kód, na který se spoléhají jiné projekty.
 
-Pro testování jsem zvolil framework Jest.
+Pro testování jsme zvolili framework Jest.
 Důvodem byly především moje předchozí zkušenosti s tímto frameworkem.
-Protože má všechny potřebné funkce a je velmi jednoduchý na použití, neviděl jsem důvod proč zvolit jiný framework.
+Protože má všechny potřebné funkce a je velmi jednoduchý na použití, neviděli jsme důvod proč zvolit jiný framework.
 
 \subsection{Dokumentace}
 

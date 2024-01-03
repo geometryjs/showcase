@@ -1,0 +1,126 @@
+\chapter{Popis funkcí knihovny}
+\label{chap:functionality}
+
+\section{Základní myšlenka}
+\label{sec:basic-idea}
+
+Knihovna je inspirována programem GeoGebra, který je určen pro tvorbu geometrických konstrukcí. 
+Cílem je programátorovi umožnit snadno vytvářet geometrické objektry pomocí závislostí mezi nimi.
+Objekty by si zároveň měly pamatovat, které objekty od nich závisí, aby se při změně objektu automaticky přepočítaly všechny závislé objekty.
+Objekty by také měly obsahovat metody na výpočet nejběžnějších vlastností.
+
+\section{Architektura}
+\label{sec:architecture}
+
+Jasně stanovit principy architektury knihovny je důležité pro její přehlednost a udržitelnost.
+Stanovením těchto principů ze začátku se můžeme mimo jiné vyvarovat stavu, kdy se bude knihovna skládat z několika částí, jejichž struktura bude dána stavem mysli autora v danou chvíli, nikoli rozumnou úvahou.
+Můžeme se tím však dostat do stavu, kdy jsme si v začátku stanovili principy, které se ukázaly jako nevhodné. 
+Protože jsme se těmi to principy řídili při psaní kódu, může být obtížné je v průběhu projektu změnit bez nutnosti přepsat velkou část kódu.
+
+Jelikož se nám koncept této knihovny jevil jako poměrně jednoduchý, rozhodli jsme se pro poměrně striktní nastevení pravidel architektury již ve velmi rané fázi projektu.
+
+\subsection{Dědičnost a kompozice}
+\label{subsec:inheritance-composition}
+
+V objektově orientovaném programování máme ke strukturování dva hlavní přístupy - dědičnost a kompozici.
+
+TypeScript nám dovoluje používat oba přístupy, ale přiklání se spíše k dědičnosti.
+Dědičnost zajišťuje standarním způsobem pomocí klíčového slova \texttt{extends}.
+Kompozici nám dovoluje pouze typovou a to pomocí rozhraní a klíčového slova \texttt{implements}.
+Nedovoluje nám dědit z více tříd, ale umožňuje implementovat více rozhraní.
+Přestože existují způsoby, jak obejít toto omezení, většinou je lepší se jich vyvarovat, jelikož přináší zbytečnou složitost a obecně méně přehledný a srozumitelný kód.
+
+Pro kihovnu jsme tedy zvolili přístup jednoduše shrnutelný jako \textit{kompozice pro strukturu, dědičnost pro implemetaci}.
+V praxi se tento princip projevuje tak, že máme několik rozhraní, jejichž kombinacemi určujeme typ parametrů a návratových hodnot metod.
+Tyto kombinace jsou poté implementovány (většinou pomocí dědičnosti minimlizujeme duplikaci kódu).
+
+Tento přístup jsme zvolili především protože u dědičnosti se můžeme velmi rychle a jednoduše dostat do situace, kdy nebudeme schopni přidat novou funkcionalitu, aniž bychom zásadně změnili stávající strukturu kódu.
+To je krajně nevhodné, pokud tuto struktu odhalujeme uživateli knihovny, jelikož i přidání malé funkcionality může znamenat \uv{breaking change}.
+Struktura daná kompozicí rozhraní je mnohem flexibilnější a transparentnější v tom, co umožňuje a co ne\footnote{V našem případě tomu tak je především protože kompozici pomocí rozhraní v TypeScriptu zajišťují typy využívané pouze při kompilaci. Nemá tedy žádné implikace při \uv{runtimu}. To také znamená, že můžeme v krizovém případě kladené požadavky obejít.}.
+
+Knihovna je tedy většinově strukturována tak, aby k jejímu standardnímu používání bylo potřeba \uv{importovat} pouze rozhraní a funkce.
+Vyjímkou jsou třídy, které mají z podstaty věci vždy jen jednu implementaci s jednoduchou hierarchií dědičnosti (jedná se například o třídy představující průsečíky jiných objektů).
+
+\section{Objekty}
+\label{sec:objects}
+
+Základním objektem knihovny je \texttt{Plane}\footnote{Pokud se zde zmiňujeme o objetech \texttt{NázevObjektu}, myslíme tím vždy objekt, který implemetuje rozhraní \texttt{NázevObjektu}.}. 
+Jedná se o rovinu, ve které se budou všechny objekty nacházet.
+Zároveň je to objekt, který bude obsahovat metody na vytváření nových objektů.
+
+\subsection[Kategorizace]{Kategorizace objektů na základě některých vlastností}
+\label{subsec:object-categorization}
+
+Pro přehlednost a snadnější orientaci v knihovně rozlišuje dokumentace několik kategorí objektů\footnote{Rozdělním objektů je zde myšleno rozdělení tříd nebo rozhraní, nikoli konkrétních instancí těchto tříd nebo tříd implementujích tyto rozhraní.}.
+
+\subsubsection[ObjectWithType]{\texttt{ObjectWithType}}
+\label{subsubsec:object-with-type}
+
+Do kategorie\footnote{Jedná se zároveň i o rozhraní.} \texttt{ObjectWithType} patří objekty, které reprezentují geometrické objekty. 
+Jediným poždavkem na objekty v této kategorii je, aby měly vlastnost \texttt{objectType}, která určuje typ objektu, a vlastnost \texttt{virtual}, která určuje, zda se jedná o virtuální objekt (o tom více v další sekci).
+Pokud tedy někde bereme jako parametr objekt typu \texttt{ObjectWithType}, víme, že jsme rychle schopni zjistit, jaký geometrický objekt reprezentuje.
+
+\subsubsection[Virtuální a nevirtuální]{Virtuální a nevirtuální objekty}
+\label{subsubsec:virtual-and-non-virtual}
+
+Objekty z kategorie \texttt{ObjectWithType} mohou být virtuální\footnote{Pojem virtuální se v jiných programovacích jazycích využívá k popisu metod, které lze \uv{overridnout} ve třídě, která tuto metodu dědí. V TypeScriptu nejsou žádné virtuální metody (respektive jsou všechny virtuální, a proto to není nutno specifikovat), využíváme tedy tohoto termínu pro jiný účel.} nebo nevirtuální.
+Virtuálními objekty se rozumí takovým objektům, které nereprezentují geometrický objekt, který by bylo možné umístít do roviny (například vektor nebo číslo).
+Nevirtuální jsou tedy objekty, které reprezentují geometrické objekty, které je možné umístit do roviny (například bod nebo přímka).
+
+Toto dělení se netýká objektů nespadajících do kategorie \texttt{ObjectWithType}.
+
+\subsubsection[Bound a Unbound]{\uv{Bound} a \uv{Unbound} objekty}
+\label{subsubsec:bound-and-unbound}
+
+Aby byla knihovna schopna správně reagovat na změnu objektu, musí vědět, které objekty od něj závisí.
+Toto je zajištěno promocí Grafu závislostí (viz sekce \ref{sec:dependency-graph}).
+
+Objekty, které označujeme jako \uv{bound} jsou objekty, které jsou součástí grafu závislostí.
+Ty, které nejsou součástí grafu závislostí, označujeme jako \uv{unbound}.
+
+\uv{Bound} objekty jsou vytvářeny pomocí metod objektu \texttt{Plane} (viz sekce \ref{subsec:creating-objects}) a jsou brány za dlouho žijící objekty. 
+Není tedy vhodné je vytvářet v cyklu či například v každém snímku animace.
+Jsou optimalizovány pro rychlé přepočítávání vlastností při změně závislých objektů, nikoli pro rychlé vytváření a mazání.
+Typicky z nich složíme scénu (to si můžeme představit stejně jako je tomu v GeoGebře).
+Musíme si taky při jejich vytváření dávat pozor na to, aby nedošlo k \uv{memory leaku}\footnote{JavaScript je jazyk s \uv{garbage collectorem}, který se stará o uvolňování paměti. Jedná se o velmi složitý proces, ale lze ho snadno shrnout tak, že pokud na objekt není žádná reference, je uvolněn. Na \uv{bound} objekty je vždy držena reference, tudíž se nikdy neuvolní.} 
+
+\uv{Unbound} objekty slouží především pro přenos dat mezi funkcemi. 
+Jejich hodnoty nejsou závislé na žádných jiných objektech a neaktualizují se při změně jiných objektů.
+Jejich vytváření nemá přílišný vliv na výkon\footnote{Vliv není větší než při standardní instanciaci objektů v JavaScriptu.}, tudíž je možno je vytvářet v cyklu či v každém snímku animace a používat je k výpočtům.
+
+
+\subsection[Vytváření]{Vytváření objektů pomocí objektu \texttt{Plane}}
+\label{subsec:creating-objects}
+
+Metody objektu \texttt{Plane} nám umožnují vytvářet nové objekty. 
+Tyto metody se (i podle API dokumentace) dělí do několika skupin - metody typu \texttt{create}, \texttt{construct} a \texttt{extract}\footnote{Metodou typu \texttt{typMetody} se v tomto případě chápe metoda jejíž název začíná sekvencí znaků \textit{typMetody}. Zároveň má odpovídající \uv{tag} v API dokumentaci}.
+Těmito metodami vytváříme výhradně \uv{bound} objekty. 
+\uv{Unbound} objekty vytváříme například metodami jiných tříd, které ovšem nemají vlastní kategorizaci.
+
+\subsubsection[Create]{Metody typu \texttt{create}}
+\label{subsubsec:create-methods}
+
+Metody typu \texttt{create} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot zjevnou\footnote{Zjevnou cestou se zde rozumí tomu, že pokud známe typy vstupních objektů a typ výstupu, je nám jasné, jakým procesem ze vstupu výstup získáme. Jedná se například o vytvoření přímky ze dvou bodů (je zjevné, že přímku vytvoříme tak, aby oběma body procházela).} cestou.
+Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupních objektů a/nebo hodnot a mohou vypadat například takto: 
+
+\texttt{create[TypVýsledku]From[TypParametru1]And[TypParametru2]()}
+
+\subsubsection[Construct]{Metody typu \texttt{construct}}
+\label{subsubsec:construct-methods}
+
+Metody typu \texttt{construct} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot nezjevnou\footnote{Nezjevnou cestou se rozumí takové konstrukci, u které je nutné k jednoznačnosti procesu přidat i název konstrukce. Jendná se například o vedení kolmice k přímce bodem (pokud bychom zadali pouze přímku a bod, není jednoznačně jasné, jak k výsledné přímce máme přijít).} cestou.
+Názvy metod tohoto typu se neřídí striktními pravidli, pouze se snaží být co nejvíce popisné, například:
+
+\texttt{constructPerpendicularLineFromPoint()}
+
+\subsubsection[Extract]{Metody typu \texttt{extract}}
+\label{subsubsec:extract-methods}
+
+Metody typu \texttt{extract} slouží k \uv{boundnutí} objektů.
+Typicky jsou využity v případech, kdy chceme získat nějakou vlastnost objektu, která je běžně vrácena metodou jako \uv{unbound} objekt, jako \uv{bound} objekt.
+Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupního objektu a extahoané vlastnosti a mohou vypadat například takto:
+
+\texttt{extract[PopisVýsledku][TypVýsledku]From[TypParametru]()}
+
+\section{Graf závislostí}
+\label{sec:dependency-graph}

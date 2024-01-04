@@ -1,0 +1,28 @@
+\chapter{Graf závislostí}
+\label{chap:dependency-graph}
+
+Graf závislostí obsahuje informace o vztazích mezi \uv{bound} objekty.
+Jedná se o orientovaný necyklický graf\cite{wikipedia:directed-graph}, jehož vrcholy jsou objekty a hrany reprezentují závislosti mezi nimi.
+Orientovanost grafu je implikována tím, že se jedná o graf necyklický.
+
+Graf je v paměti uložen tak, že každý objekt obsahuje \texttt{Iterable}\footnote{\texttt{Iterable} je vestavěné rozhraní, které reprezentuje objekt, kterým lze iterovat.} objektů, které na něm závisí, a \texttt{Iterable} objektů, na kterých závisí on\cite[line 17, 21]{geometryjs:source:interfaces:dependencyNode.ts}.
+Elementem tohoto grafu je vždy objekt typu \texttt{DependencyNode}.
+
+\section[Přidávání objektů]{Přidávání objektů do grafu}
+\label{sec:adding-objects-to-graph}
+
+O přidávání objektů do grafu závislostí se nemusí starat uživatel knihovny.
+Objekt je přidán vždy při instanciaci třídy.
+Toto je zajištěno pomocí parametru \texttt{dependencies} konstruktoru třídy \texttt{DependencyNode}\cite[line 13-17]{geometryjs:source:geometryObjects:dependencyNode.ts}.
+Tento parametry je při dědění tříd vždy předán konstruktoru rodičovské třídy. 
+Můžeme tak mít libovolný počet \uv{mezitříd}, dokud se nedostaneme k dost konktrétní třídě, která už má stanoveno, na kterých objektech závisí.
+
+O přidání reference druhého směru (tedy z objektu na kterém závisí nově vytvořený objekt na nově vytvořený objekt) se stará metoda \texttt{registerDependant}\cite[line 32]{geometryjs:source:interfaces:dependencyNode.ts}.
+
+\section[Procházení]{Procházení grafem}
+\label{sec:traversing-the-graph}
+
+Procházení grafem je možné libovolným alogritmem pro procházení grafu.
+Pokud budeme iterovat přes \texttt{deepDependencies}\cite[line 17]{geometryjs:source:interfaces:dependencyNode.ts} nebo přes \texttt{deepDependants}\cite[line 21]{geometryjs:source:interfaces:dependencyNode.ts}, využíváme algoritmu pro prohledávání do hloubky\cite{wikipedia:depth-first-search}.
+Jelikož se jedná o orientovaný graf, nikoli strom, je nutné si pamatovat již navštívené vrcholy, abychom se nezacyklili.
+K tomu využíváme vestavěný datový typ \texttt{Set}.

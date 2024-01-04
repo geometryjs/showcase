@@ -1,5 +1,8 @@
 \chapter{Nástroje a jazyk}
+\label{ch:technologies}
+
 \section{Programovací jazyk}
+\label{sec:programming-language}
 
 Pro tvorbu knihovny jsme si vybrali jazyk TypeScript. 
 Jedná se o nadstavbu jazyka JavaScript, která přidává statické typování a další vylepšení. 
@@ -7,11 +10,13 @@ Jazyk je svou strukturou velmi podobný jazyku C\#.
 TypeScript je kompilován do JavaScriptu, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči.
 
 \section{Nástroje}
+\label{sec:tools}
 
 Při tvorbě kvalitní a stabilní knihovny je v podstatě nezbytné využít standardní nástroje pro vývoj softwaru. 
 V této kapitole se budu zabývat nástroji, které jsme použili při tvorbě knihovny.
 
 \subsection{Verzovací systém}
+\label{subsec:version-control}
 
 Verzovací systém je nástroj, který slouží k evidenci změn v kódu. 
 Umožňuje nám také vytvářet větve, které můžeme následně sloučit do hlavní větve. 
@@ -24,6 +29,7 @@ Zároveň má podporu prakticky ve všech standardních vývojových nástrojíc
 Jako hostovací server jsme vybrali GitHub, jelikož se jedná o nejčastěji používaný server pro open-source projekty.
 
 \subsection{Správce balíčků}
+\label{subsec:package-manager}
 
 Správce balíčků je nástroj, který slouží k instalaci a aktualizaci knihoven a dalších závislostí. 
 U moderních jazyků je běžné, že většina knihoven je dostupná přes správce balíčků, který je součástí standardní instalace jazyka.
@@ -36,6 +42,7 @@ Existuje k němu i pro veřejné balíčky bezplatný repozitář, který je dos
 Tento repozitář je používán i jinými správci balíčků, například pnpm.
 
 \subsection{Kompilátor}
+\label{subsec:compiler}
 
 Důležitým \uv{build stepem} knihovny je kompilace. 
 Kompilujeme zdrojový kód v TypeScriptu do JavaScriptu, který je spustitelný v prohlížeči i v Node.js. 
@@ -45,6 +52,7 @@ Microsoft k jazyku tak poskytuje i kompilátor.
 Existují i jiné kompilátory, které jsou v některých ohledech lepší, ale vzhledem k tomu, že je kompilátor od Microsoftu nejrozšířenější, rozhodli jsme se ho použít.
 
 \subsection{Testování}
+\label{subsec:testing}
 
 Automatické testování je důležité pro zajištění kvality kódu v každém projektu. 
 U knihovnen je důkladné testování celého kódu ještě důležitější, jelikož se jedná o kód, na který se spoléhají jiné projekty.
@@ -54,11 +62,13 @@ Důvodem byly především moje předchozí zkušenosti s tímto frameworkem.
 Protože má všechny potřebné funkce a je velmi jednoduchý na použití, neviděli jsme důvod proč zvolit jiný framework.
 
 \subsection{Dokumentace}
+\label{subsec:documentation}
 
 Dokumentace je důležitá pro každý projekt.
 Dokumentace knihovny se dělí na dvě části.
 
 \subsubsection{Vývojářská dokumentace}
+\label{subsubsec:developer-documentation}
 
 Vývojářská dokumentace je určena pro hlubší pochopení kódu knihovny.
 Hodí se například pokud budeme chtít knihovnu rozšířit o nové funkce či hledat zdroje chyb.
@@ -68,6 +78,7 @@ Vývojářská dokumentace je dostupná na adrese \url{https://github.com/geomet
 Jedná se také o hlavní zdroj této práce.
 
 \subsubsection{Uživatelská dokumentace}
+\label{subsubsec:user-documentation}
 
 Uživatelská dokumentace (nebo také API dokumentace) je určena pro uživatele knihovny, tedy pro programátory, kteří knihovnu používají.
 Ta vychází přímo z kódu knihovny a komentářů v něm.

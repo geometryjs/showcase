@@ -26,3 +26,10 @@ Procházení grafem je možné libovolným alogritmem pro procházení grafu.
 Pokud budeme iterovat přes \texttt{deepDependencies}\cite[line 17]{geometryjs:source:interfaces:dependencyNode.ts} nebo přes \texttt{deepDependants}\cite[line 21]{geometryjs:source:interfaces:dependencyNode.ts}, využíváme algoritmu pro prohledávání do hloubky\cite{wikipedia:depth-first-search}.
 Jelikož se jedná o orientovaný graf, nikoli strom, je nutné si pamatovat již navštívené vrcholy, abychom se nezacyklili.
 K tomu využíváme vestavěný datový typ \texttt{Set}.
+
+\section[Necykličnost]{Zajištění necykličnosti grafu}
+\label{sec:acyclicity}
+
+Protože při výpočtu vlastností jednotlivých objektů budeme rekurzivně počítat potřebné vlastnosti všech objektů, na kterých dané objekty závisí, je nutné zamezit cyklickým závislostem.
+Tohoto snadno docílíme tak, že nedovolíme změnit závislosti po vytvoření objektu a budeme všechny závislosti požadovat již při vytváření objektu.
+V kódu tohoto docílíme tak, že metodu na přidávání závislostí (metoda \texttt{registerDependency}\cite[line 20-23]{geometryjs:source:geometryObjects:dependencyNode.ts}) uděláme \texttt{protected} a zavoláme ji pouze v konstruktoru\footnote{Je stále teoreticky možné vytvořit cyklickou závislost, ale lze prakticky vyloučit, že bychom ji vytvořili \uv{omylem}, jelikož kód k tomu potřebný je tak nestadardní, že si nelze neuvědomit, že děláme něco špatně.}.

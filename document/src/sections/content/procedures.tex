@@ -1,0 +1,57 @@
+\chapter{Procedury}
+\label{chap:procedures}
+
+Kinhovna potřebuje (nebo alesoň v budoucnu může potřebovat) velké množštví matematických výpočtů.
+Abychom se vyhnuli opakování a umožnili lepší segmentaci kódu, abstrahujeme tyto výpočty do tzv. \uv{procedur}.
+
+\section[Definice]{Definice procedury}
+\label{sec:procedure-definition}
+
+Procedurou nazveme \uv{pure} funkci, která bere jako parametr jeden JavaScriptový objekt a vrací jeden JavaScriptový objekt.
+
+\section[Implementace]{Implementace procedury}
+\label{sec:procedure-implementation}
+
+Procedury budeme implementovat jako třídy implementují rozhraní \texttt{Procedure}\cite{geometryjs:source:interfaces:procedure.ts}.
+Pro zjednodušení implementace máme k dispozici třídu \texttt{Procedure}\cite{geometryjs:source:procedures:procedure.ts}.
+
+\subsection{Využití třidy}
+\label{subsec:procedure-usage-of-class}
+
+Někteří si možná mohou položit otázku, proč využíváme třídu, když se jedná o pouhou funkci.
+Důvodem je, že procedury jsou takto objekty a můžeme jim tedy přidávat další metody nebo vlastnosti.
+Zatím této možnosti knihovna nevyužívá, ale v budoucnu by mohla být užitečná.
+
+\section[Dokumentace]{Dokumentace procedur}
+\label{sec:procedure-documentation}
+
+Jelikož jádrem procedur budou většinou matematické výpočty, jejichž kódová implmeentace nemusí být dostatečně deskriptivní, je důležité, aby procedury byly dobře zdokumentované.
+K tomu máme dedikovanou stránku dokumentace na wiki\cite{geometryjs:wiki:procedures}.
+
+\section[Typování]{Typování procedur}
+\label{sec:procedure-typing}
+
+Jelikož procedury dědí z jedné třídy, ale každá procedura má jiný typ vstupního a výstupního objektu, je nutné využít generických typů.
+Vstupní a výstupní typ procedury jsou definovány jako generické typy rozhraní \texttt{Procedure}\cite[line 6]{geometryjs:source:interfaces:procedure.ts}.
+
+\section[Dělení]{Dělení procedur}
+\label{subsec:procedure-categorization}
+
+Procedury dělíme do dvou kategorií - procedury \uv{základní} a procedury \uv{odvozené}.
+
+\subsection[Základní]{Základní procedury}
+\label{subsubsec:basic-procedures}
+
+Základními procedurami jsou procedury, které nepotřebují specifickou dokumentaci.
+Jejich cíl a postup je běžně známý nebo často popisovaný v jíných zdrojích a stačí nám k tomu pouze odkaz na tyto zdroje.
+
+Příkladem může být procedura \texttt{VectorAddition}\cite[line 9-23]{geometryjs:source:procedures:vectorOperations.ts}, která sečte dva vektory, nebo procedura \texttt{VectorDotProduct}\cite[line 88-99]{geometryjs:source:procedures:vectorOperations.ts}, která spočítá skalární součin dvou vektorů.
+
+\subsection[Odvozené]{Odvozené procedury}
+\label{subsubsec:derived-procedures}
+
+Odvozené procedury jsou procedury, které potřebují specifickou dokumentaci.
+Tyto procedury jsou specifičtější a často například nemají vlastní název.
+Jako jejich název použijeme několik slov vystihující, co procedura dělá.
+
+Příkladem může být procedura \texttt{LineLineIntersection}\cite[line 11-27]{geometryjs:source:procedures:lineLine.ts} nebo procedura \texttt{LineCCoefficient}\cite[line 11-20]{geometryjs:source:procedures:lineEquation.ts}.

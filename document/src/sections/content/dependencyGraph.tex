@@ -2,10 +2,10 @@
 \label{chap:dependency-graph}
 
 Graf závislostí obsahuje informace o vztazích mezi \uv{bound} objekty.
-Jedná se o orientovaný necyklický graf\cite{wikipedia:directed-graph}, jehož vrcholy jsou objekty a hrany reprezentují závislosti mezi nimi.
+Jedná se o orientovaný necyklický graf\cite{wikipedia:directed-graph}, jehož vrcholy jsou objekty a hrany reprezentují závislosti mezi nimi\cite{geometryjs:wiki:dependency-graph}.
 Orientovanost grafu je implikována tím, že se jedná o graf necyklický.
 
-Graf je v paměti uložen tak, že každý objekt obsahuje \texttt{Iterable}\footnote{\texttt{Iterable} je vestavěné rozhraní, které reprezentuje objekt, kterým lze iterovat.} objektů, které na něm závisí, a \texttt{Iterable} objektů, na kterých závisí on\cite[line 17, 21]{geometryjs:source:interfaces:dependencyNode.ts}.
+Graf je v paměti uložen tak, že každý objekt typu \texttt{DependencyNode} obsahuje \texttt{Iterable}\footnote{\texttt{Iterable} je vestavěné rozhraní, které reprezentuje objekt, kterým lze iterovat.} objektů, které na něm závisí, a \texttt{Iterable} objektů, na kterých závisí on\cite[line 17, 21]{geometryjs:source:interfaces:dependencyNode.ts}.
 Elementem tohoto grafu je vždy objekt typu \texttt{DependencyNode}.
 
 \section[Přidávání objektů]{Přidávání objektů do grafu}

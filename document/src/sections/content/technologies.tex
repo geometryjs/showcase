@@ -4,7 +4,7 @@
 \section{Programovací jazyk}
 \label{sec:programming-language}
 
-Pro tvorbu knihovny jsme si vybrali jazyk TypeScript. 
+Pro tvorbu knihovny jsme si vybrali jazyk TypeScript\cite{geometryjs:wiki:technologies}. 
 Jedná se o nadstavbu jazyka JavaScript, která přidává statické typování a další vylepšení\cite{TypeScript:handbook}. 
 Jazyk je svou strukturou velmi podobný jazyku C\#.
 TypeScript je kompilován do JavaScriptu\cite{TypeScript}, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči\footnote{Kompatibilitu zajišťuje tím, že klíčová slova a API, která jsou dostupná až v novějších vezích JavaScriptu, transpiluje do starších verzí.}\cite{TypeScript:tsconfig}.
@@ -24,7 +24,7 @@ Větve nám umožňují pracovat na více funkcionalitách zároveň, aniž bych
 Také nám umožňuje v případě potřeby se vrátit k předchozí verzi kódu.
  Pokud nalezneme chybu, můžeme v historii najít, jak chyba vznikla podniknout kroky k eliminaci podobných chyb v budoucnu.
 
-Pro tuto práci jsme zvolili verzovací systém Git. Jedná se o nejpoužívanější verzovací systém, který je zdarma a open-source\cite{Git}.
+Pro tuto práci jsme zvolili verzovací systém Git. Jedná se o nejpoužívanější verzovací systém, který je zdarma a open-source\cite{Git,geometryjs:wiki:technologies}.
 Zároveň má podporu prakticky ve všech standardních vývojových nástrojích a existuje mnoho serverů, které vám umožní zdarma hostovat váš repozitář.
 Jako hostovací server jsme vybrali GitHub, jelikož se jedná o nejčastěji používaný server pro open-source projekty\cite{GitHub:about}.
 
@@ -38,7 +38,7 @@ U moderních jazyků je běžné, že většina knihoven je dostupná přes spr�
 V případě TypeScriptu (ve finále spíše JavaScriptu) je toto poněkud složitější, jelikož nemá standardní instalaci a běžně se spouští přímo v prohlížeči.
 Existují však i neprohlížečová prostředí, která umožňují spouštět JavaScriptový kód přímo v příkazové řádce\footnote{Spouští ho prostřednictvím interpreteru v prostředí uzpůsobném pro fungování mimo prohlížeč.}. 
 Jedním takovým prostředím je Node.js, které je založeno na jádře V8\cite{node:v8}, které používá i prohlížeč Google Chrome\cite{v8}.
-Součástí Node.js je také správce balíčků npm\cite{npm:docs}, který je nejčastěji používaným správcem balíčků pro JavaScript a TypeScript. 
+Součástí Node.js je také správce balíčků npm\cite{npm:docs,geometryjs:wiki:technologies}, který je nejčastěji používaným správcem balíčků pro JavaScript a TypeScript. 
 Existuje k němu i pro veřejné balíčky bezplatný repozitář, který je dostupný na adrese \url{https://www.npmjs.com/}.
 Tento repozitář je používán i jinými správci balíčků, například pnpm\cite{pnpm}.
 
@@ -58,7 +58,7 @@ Existují i jiné kompilátory, které jsou v některých ohledech\footnote{Nap�
 Automatické testování je důležité pro zajištění kvality kódu v každém projektu. 
 U knihovnen je důkladné testování celého kódu ještě důležitější, jelikož se jedná o kód, na který se spoléhají jiné projekty.
 
-Pro testování jsme zvolili framework Jest.
+Pro testování jsme zvolili framework Jest\cite{geometryjs:wiki:technologies}.
 Důvodem byly především naše předchozí zkušenosti s tímto frameworkem.
 Protože má všechny potřebné funkce a je velmi jednoduchý na použití, neviděli jsme důvod proč zvolit jiný framework.
 
@@ -83,5 +83,5 @@ Jedná se také o hlavní zdroj této práce.
 
 Uživatelská dokumentace (nebo také API dokumentace) je určena pro uživatele knihovny, tedy pro programátory, kteří knihovnu používají.
 Ta vychází přímo z kódu knihovny a komentářů v něm.
-Je automaticky generována systémem TypeDoc\footnote{Spouštění generování je zajištno přes GitHub Action, která aktivuje \uv{rebuild} stránky na Cloudflare Pages\cite{geometryjs:wiki:api}.} a je dostupná na adrese \url{https://geometryjs.jiricekcz.dev/api/}.
+Je automaticky generována systémem TypeDoc\footnote{Spouštění generování je zajištno přes GitHub Action, která aktivuje \uv{rebuild} stránky na Cloudflare Pages\cite{geometryjs:wiki:api}.}\cite{geometryjs:wiki:technologies} a je dostupná na adrese \url{https://geometryjs.jiricekcz.dev/api/}.
 Obashuje soupis všech tříd, funkcí a proměnných, které jsou dostupné pro uživatele knihovny a jejich popis.

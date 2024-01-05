@@ -17,7 +17,7 @@ Stanovením těchto principů ze začátku se můžeme mimo jiné vyvarovat stav
 Můžeme se tím však dostat do stavu, kdy jsme si v začátku stanovili principy, které se ukážou jako nevhodné. 
 Protože jsme se těmito principy v takové situaci řídili při psaní kódu, může být obtížné je v průběhu projektu změnit bez nutnosti přepsat velkou část kódu.
 
-Jelikož se nám koncept této knihovny jevil jako poměrně jednoduchý, rozhodli jsme se pro poměrně striktní nastevení pravidel architektury již ve velmi rané fázi projektu.
+Jelikož se nám koncept této knihovny jevil jako poměrně jednoduchý, rozhodli jsme se pro poměrně striktní nastevení pravidel architektury již ve velmi rané fázi projektu\cite{geometryjs:wiki:code-structure}.
 
 \subsection{Dědičnost a kompozice}
 \label{subsec:inheritance-composition}
@@ -30,7 +30,7 @@ Kompozici nám dovoluje pouze typovou a to pomocí rozhraní a klíčového slov
 Nedovoluje nám dědit z více tříd, ale umožňuje implementovat více rozhraní\cite{TypeScript:classes}.
 Přestože existují způsoby, jak obejít toto omezení\cite{TypeScript:mixins}, většinou je lepší se jich vyvarovat, jelikož přináší zbytečnou složitost a obecně méně přehledný a srozumitelný kód.
 
-Pro kihovnu jsme tedy zvolili přístup jednoduše shrnutelný jako \textit{kompozice pro strukturu, dědičnost pro implemetaci}.
+Pro kihovnu jsme tedy zvolili přístup jednoduše shrnutelný jako \textit{kompozice pro strukturu, dědičnost pro implemetaci}\cite{geometryjs:wiki:code-structure}.
 V praxi se tento princip projevuje tak, že máme několik rozhraní, jejichž kombinacemi určujeme typ parametrů a návratových hodnot metod.
 Tyto kombinace jsou poté implementovány (většinou pomocí dědičnosti minimlizujeme duplikaci kódu).
 
@@ -38,5 +38,5 @@ Tento přístup jsme zvolili především protože u dědičnosti se můžeme ve
 To je krajně nevhodné, pokud tuto struktu odhalujeme uživateli knihovny, jelikož i přidání malé funkcionality může znamenat \uv{breaking change}.
 Struktura daná kompozicí rozhraní je mnohem flexibilnější a transparentnější v tom, co umožňuje a co ne\footnote{V našem případě tomu tak je především protože kompozici pomocí rozhraní v TypeScriptu zajišťují typy využívané pouze při kompilaci. Nemá tedy žádné implikace při \uv{runtimu}. To také znamená, že můžeme v krizovém případě kladené požadavky obejít.}.
 
-Knihovna je tedy většinově strukturována tak, aby k jejímu standardnímu používání bylo potřeba \uv{importovat} pouze rozhraní a funkce.
+Knihovna je tedy většinově strukturována tak, aby k jejímu standardnímu používání bylo potřeba \uv{importovat} pouze rozhraní a funkce\cite{geometryjs:wiki:code-structure}.
 Vyjímkou jsou třídy, které mají z podstaty věci vždy jen jednu implementaci s jednoduchou hierarchií dědičnosti (jedná se například o třídy představující průsečíky jiných objektů)\cite{geometryjs:source:geometryObjects:intersections}.

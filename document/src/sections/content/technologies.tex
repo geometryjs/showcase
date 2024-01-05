@@ -5,51 +5,52 @@
 \label{sec:programming-language}
 
 Pro tvorbu knihovny jsme si vybrali jazyk TypeScript. 
-Jedná se o nadstavbu jazyka JavaScript, která přidává statické typování a další vylepšení. 
+Jedná se o nadstavbu jazyka JavaScript, která přidává statické typování a další vylepšení\cite{TypeScript:handbook}. 
 Jazyk je svou strukturou velmi podobný jazyku C\#.
-TypeScript je kompilován do JavaScriptu\cite[l]{TypeScript}, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči.
+TypeScript je kompilován do JavaScriptu\cite{TypeScript}, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči\footnote{Kompatibilitu zajišťuje tím, že klíčová slova a API, která jsou dostupná až v novějších vezích JavaScriptu, transpiluje do starších verzí.}\cite{TypeScript:tsconfig}.
 
 \section{Nástroje}
 \label{sec:tools}
 
-Při tvorbě kvalitní a stabilní knihovny je v podstatě nezbytné využít standardní nástroje pro vývoj softwaru. 
-V této kapitole se budu zabývat nástroji, které jsme použili při tvorbě knihovny.
+Při tvorbě kvalitní a stabilní knihovny je v podstatě nezbytné využít standardních nástrojů pro vývoj softwaru. 
+Tato kapitola se bude zabývat nástroji, které jsme použili při tvorbě knihovny.
 
 \subsection{Verzovací systém}
 \label{subsec:version-control}
 
 Verzovací systém je nástroj, který slouží k evidenci změn v kódu. 
-Umožňuje nám také vytvářet větve, které můžeme následně sloučit do hlavní větve. 
+Umožňuje nám také vytvářet větve, které můžeme následně sloučit do hlavní větve\cite{Git:branches,wikipedia:version-control}. 
 Větve nám umožňují pracovat na více funkcionalitách zároveň, aniž bychom museli mít všechny hotové. 
 Také nám umožňuje v případě potřeby se vrátit k předchozí verzi kódu.
  Pokud nalezneme chybu, můžeme v historii najít, jak chyba vznikla podniknout kroky k eliminaci podobných chyb v budoucnu.
 
-Pro tuto práci jsme zvolili verzovací systém Git. Jedná se o nejpoužívanější verzovací systém, který je zdarma a open-source.
+Pro tuto práci jsme zvolili verzovací systém Git. Jedná se o nejpoužívanější verzovací systém, který je zdarma a open-source\cite{Git}.
 Zároveň má podporu prakticky ve všech standardních vývojových nástrojích a existuje mnoho serverů, které vám umožní zdarma hostovat váš repozitář.
-Jako hostovací server jsme vybrali GitHub, jelikož se jedná o nejčastěji používaný server pro open-source projekty.
+Jako hostovací server jsme vybrali GitHub, jelikož se jedná o nejčastěji používaný server pro open-source projekty\cite{GitHub:about}.
 
 \subsection{Správce balíčků}
 \label{subsec:package-manager}
 
-Správce balíčků je nástroj, který slouží k instalaci a aktualizaci knihoven a dalších závislostí. 
-U moderních jazyků je běžné, že většina knihoven je dostupná přes správce balíčků, který je součástí standardní instalace jazyka.
+Správce balíčků je nástroj, který slouží k instalaci a aktualizaci knihoven a dalších závislostí.
+Také slouží k alspoň částečné standardizaci struktury projektu\footnote{Částečnou standardizací je myšleno, že definuje například kompilační kroky a parametry na jednom místě, nebo obsahuje soubor se standardizovaným názvem, který ve strojově i přirozeně čitelném formátu (typicky YAML nebo JSON) poskytuje informace o daném projektu.}. 
+U moderních jazyků je běžné, že většina knihoven je dostupná přes správce balíčků, který je součástí standardní instalace jazyka\footnote{Nebo je ho možno velmi jednoduše přidat.}\cite{npm:docs,Rust:cargo,golang:pkg,python:pip}.
 
 V případě TypeScriptu (ve finále spíše JavaScriptu) je toto poněkud složitější, jelikož nemá standardní instalaci a běžně se spouští přímo v prohlížeči.
-Existují však i neprohlížečová prostředí, která umožňují spouštět JavaScriptový kód přímo v příkazové řádce. 
-Jedním takovým prostředím je Node.js, které je založeno na jádře V8, které používá i prohlížeč Google Chrome.
-Součástí Node.js je také správce balíčků npm, který je nejčastěji používaným správcem balíčků pro JavaScript a TypeScript. 
+Existují však i neprohlížečová prostředí, která umožňují spouštět JavaScriptový kód přímo v příkazové řádce\footnote{Spouští ho prostřednictvím interpreteru v prostředí uzpůsobném pro fungování mimo prohlížeč.}. 
+Jedním takovým prostředím je Node.js, které je založeno na jádře V8\cite{node:v8}, které používá i prohlížeč Google Chrome\cite{v8}.
+Součástí Node.js je také správce balíčků npm\cite{npm:docs}, který je nejčastěji používaným správcem balíčků pro JavaScript a TypeScript. 
 Existuje k němu i pro veřejné balíčky bezplatný repozitář, který je dostupný na adrese \url{https://www.npmjs.com/}.
-Tento repozitář je používán i jinými správci balíčků, například pnpm.
+Tento repozitář je používán i jinými správci balíčků, například pnpm\cite{pnpm}.
 
 \subsection{Kompilátor}
 \label{subsec:compiler}
 
 Důležitým \uv{build stepem} knihovny je kompilace. 
 Kompilujeme zdrojový kód v TypeScriptu do JavaScriptu, který je spustitelný v prohlížeči i v Node.js. 
-TypeScript je, obdobně jako C\#, jazyk vytvořený Microsoftem.
+TypeScript je, obdobně jako C\#, jazyk vytvořený Microsoftem\cite{TypeScript}.
 Microsoft k jazyku tak poskytuje i kompilátor.
 
-Existují i jiné kompilátory, které jsou v některých ohledech lepší, ale vzhledem k tomu, že je kompilátor od Microsoftu nejrozšířenější, rozhodli jsme se ho použít.
+Existují i jiné kompilátory, které jsou v některých ohledech\footnote{Například umí efektivněji paralelizovat kompilaci nebo využívat cache.} lepší, ale vzhledem k tomu, že je kompilátor od Microsoftu nejrozšířenější, rozhodli jsme se ho použít.
 
 \subsection{Testování}
 \label{subsec:testing}
@@ -58,7 +59,7 @@ Automatické testování je důležité pro zajištění kvality kódu v každé
 U knihovnen je důkladné testování celého kódu ještě důležitější, jelikož se jedná o kód, na který se spoléhají jiné projekty.
 
 Pro testování jsme zvolili framework Jest.
-Důvodem byly především moje předchozí zkušenosti s tímto frameworkem.
+Důvodem byly především naše předchozí zkušenosti s tímto frameworkem.
 Protože má všechny potřebné funkce a je velmi jednoduchý na použití, neviděli jsme důvod proč zvolit jiný framework.
 
 \subsection{Dokumentace}
@@ -72,8 +73,8 @@ Dokumentace knihovny se dělí na dvě části.
 
 Vývojářská dokumentace je určena pro hlubší pochopení kódu knihovny.
 Hodí se například pokud budeme chtít knihovnu rozšířit o nové funkce či hledat zdroje chyb.
-GitHub má zabudovanou podporu pro vývojářskou dokumentaci, která je psaná ve formátu Markdown.
-Markdown je jednoduchý formát, který umožňuje psát text s krátkými formátovacími značkami.
+GitHub má zabudovanou podporu pro vývojářskou dokumentaci\cite{GitHub:wikis}, která je psaná ve formátu Markdown\footnote{GitHub wikis podporuje i jiné formáty než Markdown, jsou ale méně používané.}.
+Markdown je jednoduchý formát, který umožňuje psát text s krátkými formátovacími značkami\cite{GitHub:markdown}.
 Vývojářská dokumentace je dostupná na adrese \url{https://github.com/geometryjs/geometry.js/wiki/} a je manuálně aktualizována. 
 Jedná se také o hlavní zdroj této práce.
 

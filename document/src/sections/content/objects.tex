@@ -1,28 +1,28 @@
 \chapter{Objekty}
 \label{chapter:objects}
 
-Základním objektem knihovny je \texttt{Plane}\footnote{Pokud se zde zmiňujeme o objetech \texttt{NázevObjektu}, myslíme tím vždy objekt, který implemetuje rozhraní \texttt{NázevObjektu}.}\cite{geometryjs:source:interfaces:plane.ts}. 
+Základním objektem knihovny je \texttt{Plane}\footnote{Pokud se zde zmiňujeme o objektech \texttt{NázevObjektu}, myslíme tím vždy objekt, který implemetuje rozhraní \texttt{NázevObjektu}.}\cite{geometryjs:source:interfaces:plane.ts}. 
 Jedná se o rovinu, ve které se budou všechny objekty nacházet.
 Zároveň je to objekt, který bude obsahovat metody na vytváření nových objektů\cite{geometryjs:wiki:geometryObjects}.
 
 \section[Kategorizace]{Kategorizace objektů na základě některých vlastností}
 \label{sec:object-categorization}
 
-Pro přehlednost a snadnější orientaci v knihovně rozlišuje dokumentace několik kategorí objektů\footnote{Rozdělním objektů je zde myšleno rozdělení tříd nebo rozhraní, nikoli konkrétních instancí těchto tříd nebo tříd implementujích tyto rozhraní.}.
+Pro přehlednost a snadnější orientaci v knihovně rozlišuje dokumentace několik kategorí objektů\footnote{Rozdělním objektů je zde myšleno rozdělení tříd nebo rozhraní, nikoli konkrétních instancí těchto tříd nebo tříd implementujích tyto rozhraní.}\cite{geometryjs:wiki:geometryObjects}.
 
 \subsection[ObjectWithType]{\texttt{ObjectWithType}}
 \label{subsec:object-with-type}
 
 Do kategorie\footnote{Jedná se zároveň i o rozhraní.} \texttt{ObjectWithType} patří objekty, které reprezentují geometrické objekty. 
 Jediným poždavkem na objekty v této kategorii je, aby měly vlastnost \texttt{objectType}, která určuje typ objektu, a vlastnost \texttt{virtual}, která určuje, zda se jedná o virtuální objekt (o tom více v další sekci).
-Pokud tedy někde bereme jako parametr objekt typu \texttt{ObjectWithType}, víme, že jsme rychle schopni zjistit, jaký geometrický objekt reprezentuje.
+Pokud tedy někde bereme jako parametr objekt typu \texttt{ObjectWithType}, víme, že jsme rychle schopni zjistit, jaký geometrický objekt reprezentuje.\cite[volný překlad]{geometryjs:wiki:geometryObjects}
 
 \subsection[Virtuální a nevirtuální]{Virtuální a nevirtuální objekty}
 \label{subsec:virtual-and-non-virtual}
 
 Objekty z kategorie \texttt{ObjectWithType} mohou být virtuální\footnote{Pojem virtuální se v jiných programovacích jazycích využívá k popisu metod, které lze \uv{overridnout} ve třídě, která tuto metodu dědí. V TypeScriptu nejsou žádné virtuální metody (respektive jsou všechny virtuální, a proto to není nutno specifikovat), využíváme tedy tohoto termínu pro jiný účel.} nebo nevirtuální.
 Virtuálními objekty se rozumí takovým objektům, které nereprezentují geometrický objekt, který by bylo možné umístít do roviny (například vektor nebo číslo).
-Nevirtuální jsou tedy objekty, které reprezentují geometrické objekty, které je možné umístit do roviny (například bod nebo přímka).
+Nevirtuální jsou tedy objekty, které reprezentují geometrické objekty, které je možné umístit do roviny (například bod nebo přímka).\cite[volný překlad]{geometryjs:wiki:geometryObjects}
 
 Toto dělení se netýká objektů nespadajících do kategorie \texttt{ObjectWithType}.
 
@@ -39,25 +39,25 @@ Ty, které nejsou součástí grafu závislostí, označujeme jako \uv{unbound}.
 Není tedy vhodné je vytvářet v cyklu či například v každém snímku animace.
 Jsou optimalizovány pro rychlé přepočítávání vlastností při změně závislých objektů, nikoli pro rychlé vytváření a mazání.
 Typicky z nich složíme scénu (to si můžeme představit stejně jako je tomu v GeoGebře).
-Musíme si taky při jejich vytváření dávat pozor na to, aby nedošlo k \uv{memory leaku}\footnote{JavaScript je jazyk s \uv{garbage collectorem}, který se stará o uvolňování paměti. Jedná se o velmi složitý proces, ale lze ho snadno shrnout tak, že pokud na objekt není žádná reference, je uvolněn. Na \uv{bound} objekty je vždy držena reference, tudíž se nikdy neuvolní.} 
+Musíme si taky při jejich vytváření dávat pozor na to, aby nedošlo k \uv{memory leaku}\footnote{JavaScript je jazyk s \uv{garbage collectorem}\cite{mdn:memory-management}, který se stará o uvolňování paměti. Jedná se o velmi složitý proces, ale lze ho snadno shrnout tak, že pokud na objekt není žádná reference, je uvolněn. Na \uv{bound} objekty je vždy držena reference, tudíž se nikdy neuvolní.} 
 
 \uv{Unbound} objekty slouží především pro přenos dat mezi funkcemi. 
 Jejich hodnoty nejsou závislé na žádných jiných objektech a neaktualizují se při změně jiných objektů.
-Jejich vytváření nemá přílišný vliv na výkon\footnote{Vliv není větší než při standardní instanciaci objektů v JavaScriptu.}, tudíž je možno je vytvářet v cyklu či v každém snímku animace a používat je k výpočtům.
+Jejich vytváření nemá přílišný vliv na výkon\footnote{Vliv není větší než při standardní instanciaci objektů v JavaScriptu.}, tudíž je možno je vytvářet v cyklu či v každém snímku animace a používat je k výpočtům.\cite[volný překlad]{geometryjs:wiki:geometryObjects}
 
 
 \section[Vytváření]{Vytváření objektů pomocí objektu \texttt{Plane}}
 \label{sec:creating-objects}
 
 Metody objektu \texttt{Plane} nám umožnují vytvářet nové objekty. 
-Tyto metody se (i podle API dokumentace) dělí do několika skupin - metody typu \texttt{create}, \texttt{construct} a \texttt{extract}\footnote{Metodou typu \texttt{typMetody} se v tomto případě chápe metoda jejíž název začíná sekvencí znaků \textit{typMetody}. Zároveň má odpovídající \uv{tag} v API dokumentaci}.
+Tyto metody se (i podle API dokumentace) dělí do několika skupin - metody typu \texttt{create}, \texttt{construct} a \texttt{extract}\footnote{Metodou typu \texttt{typMetody} se v tomto případě chápe metoda jejíž název začíná sekvencí znaků \textit{typMetody}. Zároveň má odpovídající \uv{tag} v API dokumentaci}\cite{geometryjs:wiki:geometryObjects}.
 Těmito metodami vytváříme výhradně \uv{bound} objekty. 
 \uv{Unbound} objekty vytváříme například metodami jiných tříd, které ovšem nemají vlastní kategorizaci.
 
 \subsection[Create]{Metody typu \texttt{create}}
 \label{subsec:create-methods}
 
-Metody typu \texttt{create} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot zjevnou\footnote{Zjevnou cestou se zde rozumí tomu, že pokud známe typy vstupních objektů a typ výstupu, je nám jasné, jakým procesem ze vstupu výstup získáme. Jedná se například o vytvoření přímky ze dvou bodů (je zjevné, že přímku vytvoříme tak, aby oběma body procházela).} cestou.
+Metody typu \texttt{create} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot zjevnou\footnote{Zjevnou cestou se zde rozumí tomu, že pokud známe typy vstupních objektů a typ výstupu, je nám jasné, jakým procesem ze vstupu výstup získáme. Jedná se například o vytvoření přímky ze dvou bodů (je zjevné, že přímku vytvoříme tak, aby oběma body procházela).} cestou\cite{geometryjs:wiki:geometryObjects}.
 Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupních objektů a/nebo hodnot a mohou vypadat například takto: 
 
 \texttt{create[TypVýsledku]From[TypParametru1]And[TypParametru2]()}
@@ -65,7 +65,7 @@ Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupních objektů
 \subsection[Construct]{Metody typu \texttt{construct}}
 \label{subsec:construct-methods}
 
-Metody typu \texttt{construct} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot nezjevnou\footnote{Nezjevnou cestou se rozumí takové konstrukci, u které je nutné k jednoznačnosti procesu přidat i název konstrukce. Jendná se například o vedení kolmice k přímce bodem (pokud bychom zadali pouze přímku a bod, není jednoznačně jasné, jak k výsledné přímce máme přijít).} cestou.
+Metody typu \texttt{construct} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot nezjevnou\footnote{Nezjevnou cestou se rozumí takové konstrukci, u které je nutné k jednoznačnosti procesu přidat i název konstrukce. Jendná se například o vedení kolmice k přímce bodem (pokud bychom zadali pouze přímku a bod, není jednoznačně jasné, jak k výsledné přímce máme přijít).} cestou \cite{geometryjs:wiki:geometryObjects}.
 Názvy metod tohoto typu se neřídí striktními pravidli, pouze se snaží být co nejvíce popisné, například:
 
 \texttt{constructPerpendicularLineFromPoint()}
@@ -74,7 +74,7 @@ Názvy metod tohoto typu se neřídí striktními pravidli, pouze se snaží bý
 \label{subsec:extract-methods}
 
 Metody typu \texttt{extract} slouží k \uv{boundnutí} objektů.
-Typicky jsou využity v případech, kdy chceme získat nějakou vlastnost objektu, která je běžně vrácena metodou jako \uv{unbound} objekt, jako \uv{bound} objekt.
+Typicky jsou využity v případech, kdy chceme získat nějakou vlastnost objektu, která je běžně vrácena metodou jako \uv{unbound} objekt, jako \uv{bound} objekt\cite{geometryjs:wiki:geometryObjects}.
 Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupního objektu a extahoané vlastnosti a mohou vypadat například takto:
 
 \texttt{extract[PopisVýsledku][TypVýsledku]From[TypParametru]()}

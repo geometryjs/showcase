@@ -6,37 +6,37 @@
 
 Knihovna je inspirována programem GeoGebra, který je určen pro tvorbu geometrických konstrukcí. 
 Cílem je programátorovi umožnit snadno vytvářet geometrické objektry pomocí závislostí mezi nimi.
-Objekty by si zároveň měly pamatovat, které objekty od nich závisí, aby se při změně objektu automaticky přepočítaly všechny závislé objekty.
+Objekty by si zároveň měly pamatovat, které objekty na nich závisí, aby se při změně objektu automaticky přepočítaly všechny závislé objekty.
 Objekty by také měly obsahovat metody na výpočet nejběžnějších vlastností.
 
 \section{Architektura}
 \label{sec:architecture}
 
 Jasně stanovit principy architektury knihovny je důležité pro její přehlednost a udržitelnost.
-Stanovením těchto principů ze začátku se můžeme mimo jiné vyvarovat stavu, kdy se bude knihovna skládat z několika částí, jejichž struktura bude dána stavem mysli autora v danou chvíli, nikoli rozumnou úvahou.
-Můžeme se tím však dostat do stavu, kdy jsme si v začátku stanovili principy, které se ukázaly jako nevhodné. 
-Protože jsme se těmi to principy řídili při psaní kódu, může být obtížné je v průběhu projektu změnit bez nutnosti přepsat velkou část kódu.
+Stanovením těchto principů ze začátku se můžeme mimo jiné vyvarovat stavu, kdy se bude knihovna skládat z několika částí, jejichž struktura bude dána stavem mysli autora v době psaní kódu, nikoli rozumnou úvahou.
+Můžeme se tím však dostat do stavu, kdy jsme si v začátku stanovili principy, které se ukážou jako nevhodné. 
+Protože jsme se těmito principy v takové situaci řídili při psaní kódu, může být obtížné je v průběhu projektu změnit bez nutnosti přepsat velkou část kódu.
 
 Jelikož se nám koncept této knihovny jevil jako poměrně jednoduchý, rozhodli jsme se pro poměrně striktní nastevení pravidel architektury již ve velmi rané fázi projektu.
 
 \subsection{Dědičnost a kompozice}
 \label{subsec:inheritance-composition}
 
-V objektově orientovaném programování máme ke strukturování dva hlavní přístupy - dědičnost a kompozici.
+V objektově orientovaném programování máme ke strukturování dva hlavní přístupy - dědičnost\cite{wikipedia:inheritance} a kompozici\footnote{Existuje několik typů kompozic, jedním je obsažení jednotlivých komponentů jako vlastnosti třídy, jiné může být prostřednicvím tzv. \uv{traitů}\cite{Rust:traits}. Typová kompozice se spíše podobná metodě \uv{traitů}. }.
 
 TypeScript nám dovoluje používat oba přístupy, ale přiklání se spíše k dědičnosti.
-Dědičnost zajišťuje standarním způsobem pomocí klíčového slova \texttt{extends}.
-Kompozici nám dovoluje pouze typovou a to pomocí rozhraní a klíčového slova \texttt{implements}.
-Nedovoluje nám dědit z více tříd, ale umožňuje implementovat více rozhraní.
-Přestože existují způsoby, jak obejít toto omezení, většinou je lepší se jich vyvarovat, jelikož přináší zbytečnou složitost a obecně méně přehledný a srozumitelný kód.
+Dědičnost zajišťuje standarním způsobem pomocí klíčového slova \texttt{extends}\cite{mdn:extends}.
+Kompozici nám dovoluje pouze typovou a to pomocí rozhraní a klíčového slova \texttt{implements}\cite{TypeScript:classes}.
+Nedovoluje nám dědit z více tříd, ale umožňuje implementovat více rozhraní\cite{TypeScript:classes}.
+Přestože existují způsoby, jak obejít toto omezení\cite{TypeScript:mixins}, většinou je lepší se jich vyvarovat, jelikož přináší zbytečnou složitost a obecně méně přehledný a srozumitelný kód.
 
 Pro kihovnu jsme tedy zvolili přístup jednoduše shrnutelný jako \textit{kompozice pro strukturu, dědičnost pro implemetaci}.
 V praxi se tento princip projevuje tak, že máme několik rozhraní, jejichž kombinacemi určujeme typ parametrů a návratových hodnot metod.
 Tyto kombinace jsou poté implementovány (většinou pomocí dědičnosti minimlizujeme duplikaci kódu).
 
-Tento přístup jsme zvolili především protože u dědičnosti se můžeme velmi rychle a jednoduše dostat do situace, kdy nebudeme schopni přidat novou funkcionalitu, aniž bychom zásadně změnili stávající strukturu kódu.
+Tento přístup jsme zvolili především protože u dědičnosti se můžeme velmi rychle a jednoduše dostat do situace, kdy nebudeme schopni přidat novou funkcionalitu, aniž bychom zásadně změnili stávající strukturu kódu\footnote{Při používání dědičnosti musíme balancovat hloubku \uv{stromu dědičnosti} - \uv{mělký} strom zaručí lepší přehlednost, \uv{hlubší} lépe popíše skutečné vztahy mezi třídami.}.
 To je krajně nevhodné, pokud tuto struktu odhalujeme uživateli knihovny, jelikož i přidání malé funkcionality může znamenat \uv{breaking change}.
 Struktura daná kompozicí rozhraní je mnohem flexibilnější a transparentnější v tom, co umožňuje a co ne\footnote{V našem případě tomu tak je především protože kompozici pomocí rozhraní v TypeScriptu zajišťují typy využívané pouze při kompilaci. Nemá tedy žádné implikace při \uv{runtimu}. To také znamená, že můžeme v krizovém případě kladené požadavky obejít.}.
 
 Knihovna je tedy většinově strukturována tak, aby k jejímu standardnímu používání bylo potřeba \uv{importovat} pouze rozhraní a funkce.
-Vyjímkou jsou třídy, které mají z podstaty věci vždy jen jednu implementaci s jednoduchou hierarchií dědičnosti (jedná se například o třídy představující průsečíky jiných objektů).
+Vyjímkou jsou třídy, které mají z podstaty věci vždy jen jednu implementaci s jednoduchou hierarchií dědičnosti (jedná se například o třídy představující průsečíky jiných objektů)\cite{geometryjs:source:geometryObjects:intersections}.

@@ -1,14 +1,14 @@
 \chapter{Pomocné struktury}
 \label{chap:helpers}
 
-Každý softwarový projekt má své pomocné funkce a třídy. 
+Každý rozsáhlejší softwarový projekt má své pomocné funkce a třídy. 
 Jedná se typicky o funkce a třídy využívané na více místech, které ale zároveň nejsou specifické pro daný projekt.
 Často to jsou například funkce pro práci s datovými strukturam nebo přímo implementace těchto datových struktur.
 
 \section{Pomocné třídy}
 \label{sec:helper-classes}
 
-Jelikož zatím knihovna nepoužívá žádné složitější datové struktury, pomocná třída je pouze jedna\footnote{Exportovány jsou dvě, ale obě jsou velmi podobné a není třeba je rozebírat jednotlivě.}.
+Jelikož zatím knihovna nepoužívá žádné složitější datové struktury, pomocná třída je pouze jedna\footnote{Exportovány jsou dvě, ale obě jsou velmi podobné a není třeba je rozebírat jednotlivě.}\cite{geometryjs:source:helpers:memoryMapCache.ts}.
 
 \subsection[Cache]{Pomocná třída Cache}
 \label{subsec:helper-class-cache}
@@ -35,7 +35,7 @@ Implementace rozhraní \texttt{Cache} je třída \texttt{MemoryMapCache}\cite[li
 Obě tyto třídy jsou implementovány pomocí vestavěného rozhraní \texttt{Map}\cite{mdn:map}.
 
 Třída \texttt{MemoryMapCacheWithAutomaticCalculation} v konstruktoru přijímá funkce pro výpočet hodnoty, pokud není v cache nalezena.
-Tím tato třída zajišťuje, že vždy, když se pokusíme získat hodnotu z cache, získáme ji (pokud existuje, tak z cache, pokud neexistuje, tak ji vypočítáme).
+Tím tato třída zajišťuje, že vždy, když se pokusíme získat hodnotu z cache, získáme ji (pokud existuje, tak z cache, pokud neexistuje, tak ji vypočítáme)\cite{geometryjs:wiki:helpers}.
 
 \section{Pomocné funkce}
 \label{sec:helper-functions}
@@ -58,7 +58,7 @@ Přesnost je nastavována globálně.
 Výchozí hodnota je $43$ bitů, to je o $10$ bitů méně než je maximální přesnost proměnné typu \texttt{number} v JavaScriptu.
 Toto nastavení je vhodné pro většinu případů.
 
-Ve speciálních případech (například \texttt{NaN}, \texttt{Infinity}, \texttt{-Infinity}) se řídíme standardním chováním operátoru \texttt{===}.
+Ve speciálních případech (například \texttt{NaN}, \texttt{Infinity}, \texttt{-Infinity}) se řídíme standardním chováním operátoru \texttt{===}.\cite{geometryjs:wiki:helpers}
 
 \subsubsection[Rovnost nule]{Funkce pro porovnávání s nulou}
 \label{subsubsec:helper-function-compare-to-zero}
@@ -67,13 +67,13 @@ Jediným okrajovým případem je porovnávání s nulou.
 V tomto případě nelze porovnat pouze s určitou přesností, jelikož absolutní přesnost nuly není známa.
 Pro tento případ existuje globální nastavení \texttt{unit}. 
 To nám udává číslo, kolem kterého se budou výsledky pohybovat. 
-Platí, že číslo $x$ je rovno 0 právě tehdy, když $x + \mathop{unit}$ je rovno $\mathop{unit}$ podle podmínek stanovených pro obecnou rovnost čísel výše.
+Platí, že číslo $x$ je rovno 0 právě tehdy, když $x + \mathop{unit}$ je rovno $\mathop{unit}$ podle podmínek stanovených pro obecnou rovnost čísel výše.\cite{geometryjs:source:interfaces:float.ts}
 
 \subsection[Název typu]{Získávání názvu typu objektu}
 \label{subsec:getting-type-name}
 
 Naše knihovna je napsána v TypeScriptu a tak v dokumentaci i ve zdrojovém kódu pracujeme s typy.
-JavaScript však typy nezná a tak pokud dojde k typové chybě, nejsme schopni uživateli popsat, co za typovou chybu udělal.
+JavaScript však typy nezná\cite{mdn:object-type} a tak pokud dojde k typové chybě, nejsme schopni uživateli popsat, co za typovou chybu udělal.
 Abychom ale mohli uživateli alespoň částečně napověděli, co udělal za chybu, vytvořili jsme funkci \texttt{getTypeString}\cite{geometryjs:source:helpers:getTypeString.ts}, která se pokusí odhadnout, jak by vypadal TypeScriptový typ objektu, který ji poskytneme.
 
 \section{Pomocné typy}

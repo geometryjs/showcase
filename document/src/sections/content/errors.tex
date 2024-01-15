@@ -1,8 +1,8 @@
 \chapter{Chybové hlášky}
 \label{chap:error-messages}
 
-Další nezbynou součástí knihovny jsou chybové hlášky.
-Ne vždy uživatel knihovny použije všechny metody správně a obzvláště v jazyce bez striktního statického typování\footnote{Nejčastě nástává problém při použítí JavaScriptu. Může nastat i v TypeScriptu při nadužívaní \texttt{any} typu nebo s použitím například \textit{ts-ignore} a \textit{ts-expect-error} direktiv.}.
+Další nezbytnou součástí knihovny jsou chybové hlášky.
+Ne vždy uživatel knihovny použije všechny metody správně a obzvláště v jazyce bez striktního statického typování\footnote{Nejčastěji nastává problém při použití JavaScriptu. Může nastat i v TypeScriptu při nadužívaní \texttt{any} typu nebo s použitím například \textit{ts-ignore} a \textit{ts-expect-error} direktiv.}.
 Když k takové chybě dojde, je vhodné uživateli poskytnout co nejvíce informací o tom, proč k chybě došlo, popřípadě, pokud chybu očekává, mu umožnit ji vyřešit v kódu.
 V TypeScriptu se \uv{error handling} standardně řeší pomocí \texttt{try} a \texttt{catch} bloků a klíčového slova \texttt{throw}\cite{mdn:try-catch}.
 

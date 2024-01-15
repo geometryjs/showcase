@@ -15,14 +15,14 @@ O přidávání objektů do grafu závislostí se nemusí starat uživatel kniho
 Objekt je přidán vždy při instanciaci třídy.
 Toto je zajištěno pomocí parametru \texttt{dependencies} konstruktoru třídy \texttt{DependencyNode}\cite[line 13-17]{geometryjs:source:geometryObjects:dependencyNode.ts}.
 Tento parametry je při dědění tříd vždy předán konstruktoru rodičovské třídy. 
-Můžeme tak mít libovolný počet \uv{mezitříd}, dokud se nedostaneme k dost konktrétní třídě, která už má stanoveno, na kterých objektech závisí.
+Můžeme tak mít libovolný počet \uv{mezitříd}, dokud se nedostaneme k dost konkrtétní třídě, která už má stanoveno, na kterých objektech závisí.
 
 O přidání reference druhého směru (tedy z objektu na kterém závisí nově vytvořený objekt na nově vytvořený objekt) se stará metoda \texttt{registerDependant}\cite[line 32]{geometryjs:source:interfaces:dependencyNode.ts}.
 
 \section[Procházení]{Procházení grafem}
 \label{sec:traversing-the-graph}
 
-Procházení grafem je možné libovolným alogritmem pro procházení grafu.
+Procházení grafem je možné libovolným algoritmem pro procházení grafu.
 Pokud budeme iterovat přes \texttt{deepDependencies}\cite[line 17]{geometryjs:source:interfaces:dependencyNode.ts} nebo přes \texttt{deepDependants}\cite[line 21]{geometryjs:source:interfaces:dependencyNode.ts}, využíváme algoritmu pro prohledávání do hloubky\cite{wikipedia:depth-first-search}.
 Jelikož se jedná o orientovaný graf, nikoli strom, je nutné si pamatovat již navštívené vrcholy, abychom se nezacyklili.
 K tomu využíváme vestavěný datový typ \texttt{Set}.
@@ -32,4 +32,4 @@ K tomu využíváme vestavěný datový typ \texttt{Set}.
 
 Protože při výpočtu vlastností jednotlivých objektů budeme rekurzivně počítat potřebné vlastnosti všech objektů, na kterých dané objekty závisí, je nutné zamezit cyklickým závislostem.
 Tohoto snadno docílíme tak, že nedovolíme změnit závislosti po vytvoření objektu a budeme všechny závislosti požadovat již při vytváření objektu.
-V kódu tohoto docílíme tak, že metodu na přidávání závislostí (metoda \texttt{registerDependency}\cite[line 20-23]{geometryjs:source:geometryObjects:dependencyNode.ts}) uděláme \texttt{protected} a zavoláme ji pouze v konstruktoru\footnote{Je stále teoreticky možné vytvořit cyklickou závislost, ale lze prakticky vyloučit, že bychom ji vytvořili \uv{omylem}, jelikož kód k tomu potřebný je tak nestadardní, že si nelze neuvědomit, že děláme něco špatně.}.
+V kódu tohoto docílíme tak, že metodu na přidávání závislostí (metoda \texttt{registerDependency}\cite[line 20-23]{geometryjs:source:geometryObjects:dependencyNode.ts}) uděláme \texttt{protected} a zavoláme ji pouze v konstruktoru\footnote{Je stále teoreticky možné vytvořit cyklickou závislost, ale lze prakticky vyloučit, že bychom ji vytvořili \uv{omylem}, jelikož kód k tomu potřebný je tak nestandardní, že si nelze neuvědomit, že děláme něco špatně.}.

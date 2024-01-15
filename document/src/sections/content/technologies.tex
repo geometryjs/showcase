@@ -7,7 +7,7 @@
 Pro tvorbu knihovny jsme si vybrali jazyk TypeScript\cite{geometryjs:wiki:technologies}. 
 Jedná se o nadstavbu jazyka JavaScript, která přidává statické typování a další vylepšení\cite{TypeScript:handbook}. 
 Jazyk je svou strukturou velmi podobný jazyku C\#.
-TypeScript je kompilován do JavaScriptu\cite{TypeScript}, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči\footnote{Kompatibilitu zajišťuje tím, že klíčová slova a API, která jsou dostupná až v novějších vezích JavaScriptu, transpiluje do starších verzí.}\cite{TypeScript:tsconfig}.
+TypeScript je kompilován do JavaScriptu\cite{TypeScript}, který je následně spouštěn v prohlížeči, zároveň zajišťuje lepší kompatibilitu napříč prohlížeči\footnote{Kompatibilitu zajišťuje tím, že klíčová slova a API, která jsou dostupná až v novějších verzích JavaScriptu, transpiluje do starších verzí.}\cite{TypeScript:tsconfig}.
 
 \section{Nástroje}
 \label{sec:tools}
@@ -32,11 +32,11 @@ Jako hostovací server jsme vybrali GitHub, jelikož se jedná o nejčastěji po
 \label{subsec:package-manager}
 
 Správce balíčků je nástroj, který slouží k instalaci a aktualizaci knihoven a dalších závislostí.
-Také slouží k alspoň částečné standardizaci struktury projektu\footnote{Částečnou standardizací je myšleno, že definuje například kompilační kroky a parametry na jednom místě, nebo obsahuje soubor se standardizovaným názvem, který ve strojově i přirozeně čitelném formátu (typicky YAML nebo JSON) poskytuje informace o daném projektu.}. 
+Také slouží k alespoň částečné standardizaci struktury projektu\footnote{Částečnou standardizací je myšleno, že definuje například kompilační kroky a parametry na jednom místě, nebo obsahuje soubor se standardizovaným názvem, který ve strojově i přirozeně čitelném formátu (typicky YAML nebo JSON) poskytuje informace o daném projektu.}. 
 U moderních jazyků je běžné, že většina knihoven je dostupná přes správce balíčků, který je součástí standardní instalace jazyka\footnote{Nebo je ho možno velmi jednoduše přidat.}\cite{npm:docs,Rust:cargo,golang:pkg,python:pip}.
 
 V případě TypeScriptu (ve finále spíše JavaScriptu) je toto poněkud složitější, jelikož nemá standardní instalaci a běžně se spouští přímo v prohlížeči.
-Existují však i neprohlížečová prostředí, která umožňují spouštět JavaScriptový kód přímo v příkazové řádce\footnote{Spouští ho prostřednictvím interpreteru v prostředí uzpůsobném pro fungování mimo prohlížeč.}. 
+Existují však i neprohlížečová prostředí, která umožňují spouštět JavaScriptový kód přímo v příkazové řádce\footnote{Spouští ho prostřednictvím interpreteru v prostředí uzpůsobeném pro fungování mimo prohlížeč.}. 
 Jedním takovým prostředím je Node.js, které je založeno na jádře V8\cite{node:v8}, které používá i prohlížeč Google Chrome\cite{v8}.
 Součástí Node.js je také správce balíčků npm\cite{npm:docs,geometryjs:wiki:technologies}, který je nejčastěji používaným správcem balíčků pro JavaScript a TypeScript. 
 Existuje k němu i pro veřejné balíčky bezplatný repozitář, který je dostupný na adrese \url{https://www.npmjs.com/}.
@@ -56,7 +56,7 @@ Existují i jiné kompilátory, které jsou v některých ohledech\footnote{Nap�
 \label{subsec:testing}
 
 Automatické testování je důležité pro zajištění kvality kódu v každém projektu. 
-U knihovnen je důkladné testování celého kódu ještě důležitější, jelikož se jedná o kód, na který se spoléhají jiné projekty.
+U knihoven je důkladné testování celého kódu ještě důležitější, jelikož se jedná o kód, na který se spoléhají jiné projekty.
 
 Pro testování jsme zvolili framework Jest\cite{geometryjs:wiki:technologies}.
 Důvodem byly především naše předchozí zkušenosti s tímto frameworkem.
@@ -83,5 +83,5 @@ Jedná se také o hlavní zdroj této práce.
 
 Uživatelská dokumentace (nebo také API dokumentace) je určena pro uživatele knihovny, tedy pro programátory, kteří knihovnu používají.
 Ta vychází přímo z kódu knihovny a komentářů v něm.
-Je automaticky generována systémem TypeDoc\footnote{Spouštění generování je zajištno přes GitHub Action, která aktivuje \uv{rebuild} stránky na Cloudflare Pages\cite{geometryjs:wiki:api}.}\cite{geometryjs:wiki:technologies} a je dostupná na adrese \url{https://geometryjs.jiricekcz.dev/api/}.
-Obashuje soupis všech tříd, funkcí a proměnných, které jsou dostupné pro uživatele knihovny a jejich popis.
+Je automaticky generována systémem TypeDoc\footnote{Spouštění generování je zajištěno přes GitHub Action, která aktivuje \uv{rebuild} stránky na Cloudflare Pages\cite{geometryjs:wiki:api}.}\cite{geometryjs:wiki:technologies} a je dostupná na adrese \url{https://geometryjs.jiricekcz.dev/api/}.
+Obsahuje soupis všech tříd, funkcí a proměnných, které jsou dostupné pro uživatele knihovny a jejich popis.

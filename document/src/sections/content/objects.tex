@@ -1,27 +1,27 @@
 \chapter{Objekty}
 \label{chapter:objects}
 
-Základním objektem knihovny je \texttt{Plane}\footnote{Pokud se zde zmiňujeme o objektech \texttt{NázevObjektu}, myslíme tím vždy objekt, který implemetuje rozhraní \texttt{NázevObjektu}.}\cite{geometryjs:source:interfaces:plane.ts}. 
+Základním objektem knihovny je \texttt{Plane}\footnote{Pokud se zde zmiňujeme o objektech \texttt{NázevObjektu}, myslíme tím vždy objekt, který implementuje rozhraní \texttt{NázevObjektu}.}\cite{geometryjs:source:interfaces:plane.ts}. 
 Jedná se o rovinu, ve které se budou všechny objekty nacházet.
 Zároveň je to objekt, který bude obsahovat metody na vytváření nových objektů\cite{geometryjs:wiki:geometryObjects}.
 
 \section[Kategorizace]{Kategorizace objektů na základě některých vlastností}
 \label{sec:object-categorization}
 
-Pro přehlednost a snadnější orientaci v knihovně rozlišuje dokumentace několik kategorí objektů\footnote{Rozdělním objektů je zde myšleno rozdělení tříd nebo rozhraní, nikoli konkrétních instancí těchto tříd nebo tříd implementujích tyto rozhraní.}\cite{geometryjs:wiki:geometryObjects}.
+Pro přehlednost a snadnější orientaci v knihovně rozlišuje dokumentace několik kategorií objektů\footnote{Rozdělením objektů je zde myšleno rozdělení tříd nebo rozhraní, nikoli konkrétních instancí těchto tříd nebo tříd implementujících tyto rozhraní.}\cite{geometryjs:wiki:geometryObjects}.
 
 \subsection[ObjectWithType]{\texttt{ObjectWithType}}
 \label{subsec:object-with-type}
 
 Do kategorie\footnote{Jedná se zároveň i o rozhraní.} \texttt{ObjectWithType} patří objekty, které reprezentují geometrické objekty. 
-Jediným poždavkem na objekty v této kategorii je, aby měly vlastnost \texttt{objectType}, která určuje typ objektu, a vlastnost \texttt{virtual}, která určuje, zda se jedná o virtuální objekt (o tom více v další sekci).
+Jediným požadavkem na objekty v této kategorii je, aby měly vlastnost \texttt{objectType}, která určuje typ objektu, a vlastnost \texttt{virtual}, která určuje, zda se jedná o virtuální objekt (o tom více v další sekci).
 Pokud tedy někde bereme jako parametr objekt typu \texttt{ObjectWithType}, víme, že jsme rychle schopni zjistit, jaký geometrický objekt reprezentuje.\cite[volný překlad]{geometryjs:wiki:geometryObjects}
 
 \subsection[Virtuální a nevirtuální]{Virtuální a nevirtuální objekty}
 \label{subsec:virtual-and-non-virtual}
 
 Objekty z kategorie \texttt{ObjectWithType} mohou být virtuální\footnote{Pojem virtuální se v jiných programovacích jazycích využívá k popisu metod, které lze \uv{overridnout} ve třídě, která tuto metodu dědí. V TypeScriptu nejsou žádné virtuální metody (respektive jsou všechny virtuální, a proto to není nutno specifikovat), využíváme tedy tohoto termínu pro jiný účel.} nebo nevirtuální.
-Virtuálními objekty se rozumí takovým objektům, které nereprezentují geometrický objekt, který by bylo možné umístít do roviny (například vektor nebo číslo).
+Virtuálními objekty se rozumí takovým objektům, které nereprezentují geometrický objekt, který by bylo možné umístit do roviny (například vektor nebo číslo).
 Nevirtuální jsou tedy objekty, které reprezentují geometrické objekty, které je možné umístit do roviny (například bod nebo přímka).\cite[volný překlad]{geometryjs:wiki:geometryObjects}
 
 Toto dělení se netýká objektů nespadajících do kategorie \texttt{ObjectWithType}.
@@ -65,8 +65,8 @@ Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupních objektů
 \subsection[Construct]{Metody typu \texttt{construct}}
 \label{subsec:construct-methods}
 
-Metody typu \texttt{construct} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot nezjevnou\footnote{Nezjevnou cestou se rozumí takové konstrukci, u které je nutné k jednoznačnosti procesu přidat i název konstrukce. Jendná se například o vedení kolmice k přímce bodem (pokud bychom zadali pouze přímku a bod, není jednoznačně jasné, jak k výsledné přímce máme přijít).} cestou \cite{geometryjs:wiki:geometryObjects}.
-Názvy metod tohoto typu se neřídí striktními pravidli, pouze se snaží být co nejvíce popisné, například:
+Metody typu \texttt{construct} slouží k vytváření objektů z jednoho nebo více objektů a/nebo hodnot nezjevnou\footnote{Nezjevnou cestou se rozumí takové konstrukci, u které je nutné k jednoznačnosti procesu přidat i název konstrukce. Jedná se například o vedení kolmice k přímce bodem (pokud bychom zadali pouze přímku a bod, není jednoznačně jasné, jak k výsledné přímce máme přijít).} cestou \cite{geometryjs:wiki:geometryObjects}.
+Názvy metod tohoto typu se neřídí striktními pravidly, pouze se snaží být co nejvíce popisné, například:
 
 \texttt{constructPerpendicularLineFromPoint()}
 
@@ -75,6 +75,6 @@ Názvy metod tohoto typu se neřídí striktními pravidli, pouze se snaží bý
 
 Metody typu \texttt{extract} slouží k \uv{boundnutí} objektů.
 Typicky jsou využity v případech, kdy chceme získat nějakou vlastnost objektu, která je běžně vrácena metodou jako \uv{unbound} objekt, jako \uv{bound} objekt\cite{geometryjs:wiki:geometryObjects}.
-Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupního objektu a extahoané vlastnosti a mohou vypadat například takto:
+Názvy metod tohoto typu jsou většinou odvozeny od názvů vstupního objektu a extrahované vlastnosti a mohou vypadat například takto:
 
 \texttt{extract[PopisVýsledku][TypVýsledku]From[TypParametru]()}

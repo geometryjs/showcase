@@ -3,7 +3,7 @@
 
 Každý rozsáhlejší softwarový projekt má své pomocné funkce a třídy. 
 Jedná se typicky o funkce a třídy využívané na více místech, které ale zároveň nejsou specifické pro daný projekt.
-Často to jsou například funkce pro práci s datovými strukturam nebo přímo implementace těchto datových struktur.
+Často to jsou například funkce pro práci s datovými strukturám nebo přímo implementace těchto datových struktur.
 
 \section{Pomocné třídy}
 \label{sec:helper-classes}
@@ -15,13 +15,13 @@ Jelikož zatím knihovna nepoužívá žádné složitější datové struktury,
 
 Jak již bylo zmíněno v \hyperref[chap:dependency-graph]{kapitole \ref*{chap:dependency-graph}}, knihovna využívá graf závislostí.
 Když už je tento graf k dispozici a všechny objekty jsou v něm uloženy, je vhodné si výpočty, které již byly provedeny, někde uložit.
-Každý objekt implemetující rozhraní \texttt{DependencyNode} obsahuje metodu \texttt{update}\cite[line 26]{geometryjs:source:interfaces:dependencyNode.ts}.
+Každý objekt implementující rozhraní \texttt{DependencyNode} obsahuje metodu \texttt{update}\cite[line 26]{geometryjs:source:interfaces:dependencyNode.ts}.
 Tato metoda je volána vždy, když se změní nějaký objekt, na kterém daný objekt závisí, můžeme ji proto spojit s čištěním cache.
 
 \subsubsection[Rozhraní]{Rozhraní \texttt{Cache}}
 \label{subsubsec:helper-class-cache-interface}
 
-Rozhraní \texttt{Cache}\cite{geometryjs:source:interfaces:cache.ts} nám definuje jak by implmentace pomocných tříd měla vypadat.
+Rozhraní \texttt{Cache}\cite{geometryjs:source:interfaces:cache.ts} nám definuje jak by implementacepomocných tříd měla vypadat.
 Rozlišuje, zda je cache \uv{NonEmpty}.
 Pokud je cache \uv{NonEmpty}, musí všechny jeho prvky být vždy definované.
 Pokud cache \uv{NonEmpty} není, mohou jeho prvky být \texttt{undefined}\footnote{TypeScript zajišťuje \uv{null safty} pomocí \uv{type unions} s typem \texttt{undefined}.}.
@@ -53,7 +53,7 @@ Porovnávání čísel s plovoucí desetinnou čárkou je však známý problém
 Pokud k výsledku, který by matematicky měl být ekvivalentní, dojdeme dvěma různými cestami, může se stát, že výsledky budou rozdílné\footnote{Rozdlínými výsledky jsou myšleny výsledky s rozdílnou bitovou reprezentací dle standardu \textit{IEEE 754}\cite{wikipeadia:double-precision-floating-point-format}}.
 To je způsobeno tím, že mezivýsledky jsou vždy zaokrouhlovány na konečný počet desetinných míst.
 
-Řešením tohoto problému je porovnávání s přeností menší než je maximální přesnost proměné dle standardu \textit{IEEE 754}. 
+Řešením tohoto problému je porovnávání s přesností menší než je maximální přesnost proměnné dle standardu \textit{IEEE 754}. 
 Přesnost je nastavována globálně.
 Výchozí hodnota je $43$ bitů, to je o $10$ bitů méně než je maximální přesnost proměnné typu \texttt{number} v JavaScriptu.
 Toto nastavení je vhodné pro většinu případů.

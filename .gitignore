@@ -1,6 +1,6 @@
 __pycache__
 *.pyc
-dist
+build
 
 document/src/**/*.aux
 document/src/**/*.log

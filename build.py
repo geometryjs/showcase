@@ -1,23 +1,31 @@
 import os
+import fs
 from distutils.dir_util import copy_tree
 # Preparing shell
 
 os.system('cls' if os.name == 'nt' else 'clear')
 os.system('title Building...')
 print('Building...')
-# Preparing dist directory 
+# Preparing directories directory 
 
-## If the directory already exists, remove all files and subdirectories in it recursively
-## If the directory does not exist, create it
-
+## The dist directory
 if os.path.exists('dist'):
-    for root, dirs, files in os.walk('dist', topdown=False):
-        for name in files:
-            os.remove(os.path.join(root, name))
-        for name in dirs:
-            os.rmdir(os.path.join(root, name))
+    ## Clearing the dist directory
+    fs.clear_dir('dist')
 else:
     os.mkdir('dist')
+
+## The build directory
+## If the directory already exists, remove all files and subdirectories in it recursively
+## If the directory does not exist, create it
+if not os.path.exists('build'):
+    os.mkdir('build')
+
+if os.path.exists('build/document'):
+    ## Clearing the build directory
+    fs.clear_dir('build/document')
+else:
+    os.mkdir('build/document')
 
 # Document
 
@@ -27,8 +35,6 @@ import document.build as document
 
 document.build()
 
-# Copying static files
-    
-## Copying all files and subdirectories from the static directory to the dist directory
+# Copying the static files into the dist directory
 
-copy_tree('static', 'dist')
+os.system('copy /Y "static\\*" "dist"')

@@ -13,4 +13,18 @@ document/src/**/*.fls
 document/src/**/*.bbl
 document/src/**/*.blg
 
+presentation/src/**/*.aux
+presentation/src/**/*.log
+presentation/src/**/*.out
+presentation/src/**/*.pdf
+presentation/src/**/*.toc
+presentation/src/**/*.gz
+presentation/src/**/*.fdb_latexmk
+presentation/src/**/*.fls
+presentation/src/**/*.bbl
+presentation/src/**/*.blg
+presentation/src/**/*.nav
+presentation/src/**/*.snm
+
+
 **/*(busy)*

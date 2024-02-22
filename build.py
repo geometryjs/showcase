@@ -27,13 +27,24 @@ if os.path.exists('build/document'):
 else:
     os.mkdir('build/document')
 
+if os.path.exists('build/presentation'):
+    ## Clearing the build directory
+    fs.clear_dir('build/presentation')
+else:
+    os.mkdir('build/presentation')
+
 # Document
 
 import document.build as document
+import presentation.build as presentation
 
 ## Running the build function in the document.build module
 
 document.build()
+
+## Running the build function in the presentation.build module
+
+presentation.build()
 
 # Copying the static files into the dist directory
 

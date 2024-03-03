@@ -1,5 +1,6 @@
 \usepackage[czech]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{caption}
 
 \usetheme{CambridgeUS}
 \usecolortheme{default}
@@ -18,3 +19,13 @@
     \tableofcontents[currentsection]
   \end{frame}
 }
+\AtBeginSubsection[]
+{
+  \begin{frame}
+    \frametitle{Obsah}
+    \tableofcontents[currentsection, currentsubsection]
+  \end{frame}
+}
+
+% Translates
+\uselanguage{czech}

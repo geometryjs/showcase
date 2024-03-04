@@ -26,5 +26,17 @@ presentation/src/**/*.blg
 presentation/src/**/*.nav
 presentation/src/**/*.snm
 
+speaker_notes/src/**/*.aux
+speaker_notes/src/**/*.log
+speaker_notes/src/**/*.out
+speaker_notes/src/**/*.pdf
+speaker_notes/src/**/*.toc
+speaker_notes/src/**/*.gz
+speaker_notes/src/**/*.fdb_latexmk
+speaker_notes/src/**/*.fls
+speaker_notes/src/**/*.bbl
+speaker_notes/src/**/*.blg
+speaker_notes/src/**/*.nav
+speaker_notes/src/**/*.snm
 
 **/*(busy)*

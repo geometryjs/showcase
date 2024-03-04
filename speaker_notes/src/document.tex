@@ -1,0 +1,119 @@
+\begin{document}
+
+\section{Cíle mé ročníkové práce} {
+  \textbf{Popis cíle mé práce. Silde má block s cílem práce.} \\
+  Koncept knihovny je podobný geogebře. Cílem je zmenšit zátěž a umožnit tak více výpočtů. \\
+  Prezentace se soustředí převážně na obecné koncepty a zásaady vývoje knihoven. \\
+  Konkrétní implementace je dlouhá a nezajímavá, v případě zájmu bude prostor na dotazy. \\
+ }
+
+\section{Programovací jazyk TypeScript} {
+  \textbf{Popis jazyka TypeScript. Slide je výčet vlastností jazyka - 3 Body} \\
+  Rozšíření JavaScriptu. Přidává statické typy. Transpilovaný jazyk - překládá se do JavaScriptu. \\
+  \textbf{Ukázka funkce filter v JavaScriptu} \\
+  \textbf{Ukázka funkce filter v TypeScriptu} \\
+  \textbf{Ukázka funkce filter v TypeScriptu s využitím moderních funkcí jazyka} \\
+  Tyto funkce nelze použít v JavaScriptu, protože nemusí být podporovány ve všech prohlížečích. \\
+ }
+
+\section{Co jsou knihovny} {
+  \textbf{Definice softwarové knihovny} \\
+  Knihovna je soubor funkcí, které mohou být použity v jiných programech. \\
+  \textbf{Důležité vlastnosti knihoven - 5 Bodů} \\
+  \begin{itemize}
+      \item Znovupoužitelnost
+      \item Stabilita
+      \item Dokumentace
+      \item Testování
+      \item Rozšiřitelnost
+  \end{itemize}
+  Vlastnosti jsou důležité i pro normální programy, nicméně u menších (osobních) projektů je to často zanedbáváno (oprávněně). \\
+ }
+\pagebreak
+\section{Vývoj knihoven} {
+  \textbf{Proč jsem zvolil vývoj knihovny} \\
+  Vývoj knihoven je stejný jako vývoj velkých aplikací. Knihovnu ale můžu udělat malou a sám a ukázat na tom koncepty vývoje velkých softwarových projektů. \\
+  \subsection {Verzování}
+  \textbf{Verzování kódu a co nám umožňuje} \\
+  \begin{itemize}
+      \item Uchovávat historii změn
+      \item Spolupráce
+      \item V případě chyb se vrátit k funkční verzi
+  \end{itemize}
+  Zároveň nám umožňuje hladce pracovat na více zařízeních a na více aspektech projektu zároveň. \\
+  \textbf{Git a GitHub, výčet důvodů, proč jsem zvolil právě Git s GitHubem} \\
+  Zvolil jsem Git jako verzovací systém a GitHub jako platformu pro ukládání kódu. \\
+  Zároveň tedy nemusím řešit ukládání a zálohování kódu, přenos mezi zařízeními. \\
+  \begin{itemize}
+      \item Nejrozšířenější
+      \item GitHub nabízí výhodné open-source plány
+      \item Snadná vyhledatelnost + stránka projektu
+  \end{itemize}
+  \textbf{Ukázka stránky projektu na GitHubu} \\
+  Můžete procházet soubory, historii změn i se podílet na vývoji. \\
+  \textbf{Ukázka stránky s Issues}
+  Kdokoli může nahlásit chybu nebo požadavek na novou funkci. \\
+  Hodí se i pro mě, abych měl přehled o tom, co je potřeba udělat. \\
+  \textbf{Ukázka stránky s Commity}
+  Commit je jedna ucelená změna v kódu. Při psaní úplně nového projektu je ze začátku náročné rozdělit změny na menší části. \\
+  \textbf{Verzování vydání - definice a číslování verzí} \\
+  Vydání je označení určité verze kódu. \\
+  Semantic Versioning je relativně standardní způsob číslování verzí. Ne každý se jím řídí, ale je bezpochybně nejrozšířenější standard. \\
+  \textbf{Ukázka releases na GitHubu} \\
+  \subsection {Správa závislostí a publikace}
+  \textbf{Definice správce balíčků - pozor dodatek 1 Bod} \\
+  Správce balíčků je nástroj, který nám umožňuje stahovat a spravovat závislosti. \\
+  V našem případě se stará i o publikaci naší knihovny. \\
+  \textbf{Ukázka knihovny na npm} \\
+  Vybral jsem si npm registr, protože je nejrozšířenější a nejvíce podporovaný. \\
+  I \textit{lepší} správci balíčků, jako třeba pnpm, používají npm registr. \\
+  \pagebreak
+  \subsection {Automatizované testování}
+  \textbf{Block s důvody automatizovaného testování}
+  Šetří nám práci s testování. Ve finále jsou spolehlivější. \\
+  Můžeme všechny testy znovu spustit při každé změně a zaručíme tak, že jsme něco nezničili. \\
+  Testy vlastně specifikují požadavky pro naši knihovnu. (Test Driven Development) \\
+  \textbf{Ukázka spuštěných testů} \\
+  Běží lokálně. Neefektivní proces, i jen pár testů na 24jádrovém procesoru trvá několik vteřin. \\
+  Zaručuje nám ale absolutně izolované prostředí. \\
+  \textbf{Ukázka GitHub Actions včetně testů} \\
+  GitHub Actions je nástroj, který nám umožňuje spouštět různé akce při git událostech. \\
+  Já mám nastaveny akce na push a pull request (tedy pokud se změní kód, nebo se jeho změna navrhne). \\
+  GitHub Actions umí spouštět i jiné akce, než jen testy. \\
+  \textbf{Ukázka testů ve 3 různých prostředích} \\
+  Testy běží na 3 různých prostředích, abychom zaručili, že knihovna bude fungovat všude. \\
+  Můžeme si to dovolit, GitHub má zdarma dostupné prostředí pro Actions pro veřejné repozitáře. \\
+  \subsection {Programátorská a uživatelská dokumentace}
+  \textbf{Block o uživatelské dokumentaci} \\
+  Jednoduchá srozumitelná dokumentace, měla by popisovat, jak všechny části knihovny použít. \\
+  U neknihovnových projektů popíše například instalaci a ovládání. \\
+  U knihovny může být cílena na lehce pokročilé uživatele. \\
+  \textbf{Block o TypeDocu} \\
+  Typedoc je nástroj, který nám umožňuje generovat dokumentaci z kódu a komentářů v něm. \\
+  \textbf{Příklad JSDoc komentáře funkce fibbonaci} \\
+  \textbf{Ukázka JSDoc komentáře na metodě normalize přímo knihovny} \\
+  Toto je přímo příklad z mého kódu. \\
+  \textbf{Ukázka, jak se metoda projeví v IntelliSense} \\
+  Toto je zařízeno primárně TypeScriptem. \\
+  \textbf{Ukázka dokumentace detailu v IntelliSense}
+  Toto se automaticky zobrazí, pokud funkci chcecme použít a vyplnit její argumenty. \\
+  \textbf{Ukázka dokumentace vygenerované TypeDocem} \\
+  Toto je ve webové dokumentaci knihovny. \\
+  \textbf{Block o programátorské dokumentaci - 1 Bod} \\
+  Popisuje jak je rozložen kód v knihovně, proč se co kde děje. \\
+  Pomáhá jiným vývojářům, nebo nám samotným, pokud se k projektu vrátíme po delší době. \\
+  Pomáhá i při vývoji, protože je náročnější udělat špatné rozhodnutí, když ho nejdřív musíme popsat a vysvětlit, proč ho chceme udělat. \\
+  Block s GitHub Wiki \\
+  \textbf{Ukázka GitHub Wiki} \\
+  GitHub Wiki je členěná na stránky, které můžeme propojovat. \\
+  Psána v Markdownu, stejně jako README. \\
+ }
+\section{Příklady využití knihovny} {
+  \textbf{Sestavení minimalitického geomterického modelu - 6 Bodů} \\
+
+ }
+\textbf{Zdroje - 1 Bod} \\
+Zdroje na prameny necitované v textu ročníkové práce. Hlavním zdrojem je práce jako taková. \\
+\textbf{Odkazy} \\
+Odkazy na součásti projektu, všechno veřejné a dostupné. \\
+\end{document}

@@ -37,6 +37,7 @@ else:
 
 import document.build as document
 import presentation.build as presentation
+import speaker_notes.build as speaker_notes
 
 ## Running the build function in the document.build module
 
@@ -45,6 +46,10 @@ document.build()
 ## Running the build function in the presentation.build module
 
 presentation.build()
+
+## Running the build function in the speaker_notes.build module
+
+speaker_notes.build()
 
 # Copying the static files into the dist directory
 
